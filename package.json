@@ -1,0 +1,20 @@
+{
+  "name": "climate-engineering",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@rollup/plugin-yaml": "^4.1.1",
+    "astro": "^3.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/prefetch": "^0.4.0",
+    "sass": "^1.68.0"
+  }
+}

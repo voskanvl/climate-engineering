@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets"
+import Logo from "@images/logo.png"
+import common from "@data/common.yml"
+import data from "@data/links.yml"
+const links = data.links
+---
+
+<footer class="footer">
+    <div class="container footer__container">
+        <div class="footer__up">
+            <a href="/">
+                <Image src={Logo} alt="logo" />
+            </a>
+            <nav class="footer__menu">
+                <ul>
+                    {
+                        links &&
+                            links.map((link: Links) => (
+                                <li>
+                                    <a href={link.href}>{link.name}</a>
+                                </li>
+                            ))
+                    }
+                </ul>
+            </nav>
+            <div class="footer__job">
+                <div>Aдрес: {common.address}</div>
+                <div>{common.jobtime}</div>
+            </div>
+            <div class="footer__phone">
+                <a href={"tel:" + common.phone}>{common.phone}</a>
+            </div>
+            <div class="footer__end">
+                <button class="footer__call">Заказать звонок</button>
+                <a href={"mailto:" + common.email} class="footer__email">{common.email}</a>
+            </div>
+        </div>
+        <div class="footer__down">
+            <div class="footer__disclamer">
+                Обращаем ваше внимание на то, что данный сайт носит исключительно информационный
+                характер и ни при каких условиях не является публичной офертой, определяемой
+                положениями Статьи 437 ГК РФ. Цены на сайте приведены как справочная информация и
+                могут быть изменены в любое время без предупреждения. Производитель может изменить
+                комплектацию, характеристики и внешний вид товара без предварительного уведомления.
+                Изображения могут отличаться от действительного вида товара. Для получения подробной
+                информации о стоимости, комплектации, сроках и условиях поставки оборудования
+                просьба обращаться к менеджерам компании.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style lang="sass" is:global>
+    .footer
+        background: var(--clr-footer)
+        border-radius: 30px 30px 0 0
+        color: #fff
+
+        &__container
+            padding-top: 55px
+
+        &__up
+            display: grid
+            grid-template-columns: 2fr 1fr 2fr 1fr 1fr
+            padding-bottom: 50px
+            place-items: start center
+            border-bottom: 1px solid #fff
+
+        &__menu > ul
+            list-style: none
+            margin: 0
+            padding: 0
+
+        &__job, &__end
+            place-self: stretch center
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+
+        &__end
+            align-items: flex-end
+
+        &__call
+            padding: 1em 25px
+            border-radius: 100px
+            border: 1px solid #FFF
+            background: none
+            color: #fff
+            cursor: pointer
+
+        &__down
+            height: 98px
+            position: relative
+
+        &__disclamer
+            text-align: center
+            width: 90%
+            height: min-content
+            position: absolute
+            inset: 0
+            margin: auto
+            font-size: 13px
+</style>

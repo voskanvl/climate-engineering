@@ -1,0 +1,14 @@
+{
+    "extends": "astro/tsconfigs/strict",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@blocks/*": ["src/components/blocks/*"],
+            "@ui/*": ["src/components/UI/*"],
+            "@images/*": ["src/assets/images/*"],
+            "@data/*": ["src/data/*"],
+            "@ts/*": ["src/ts/*"]
+        },
+        "resolveJsonModule": true
+    }
+}
