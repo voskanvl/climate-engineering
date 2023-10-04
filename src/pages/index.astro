@@ -2,10 +2,9 @@
 import Layout from "../layouts/main.astro"
 import Catalog from "@data/catalog.yml"
 import Deals from "@data/deals.yml"
-import PopularData from "@data/popular.yml"
+import popular from "@data/popular"
 import JobsData from "@data/jobs.yml"
 
-import test from "../assets/images/catalog/1.png"
 import List from "@ui/List.astro"
 import ProductCard from "@ui/ProductCard.astro"
 import Deal from "@ui/Deal.astro"
@@ -15,7 +14,6 @@ import Request from "@blocks/Request.astro"
 
 const catalog = Catalog as Links[]
 const deals = Deals as Deal[]
-const popular = PopularData as PopularType[]
 const jobs = JobsData as JobsType[]
 ---
 

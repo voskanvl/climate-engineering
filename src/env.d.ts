@@ -7,6 +7,10 @@ declare module "*.yml" {
     const value: any
     export default value
 }
+declare module "*.png" {
+    const value: string
+    export default value
+}
 
 declare interface Links {
     name: string
