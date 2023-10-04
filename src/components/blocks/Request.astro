@@ -1,0 +1,66 @@
+---
+import Hand from "@images/young-woman-using-home-technology.jpg"
+import Button from "@ui/Button.astro"
+import { Image } from "astro:assets"
+---
+
+<div class="request">
+    <div class="request__header">
+        <h2 class="request__title">Оформите заявку</h2>
+        <p class="request__text">Заполните форму, и мы свяжемся с Вами в ближайшее время</p>
+    </div>
+    <div class="request__body">
+        <form action="" id="form">
+            <input type="text" name="name" id="name-input" placeholder="Ваше имя" required />
+            <input
+                type="tel"
+                name="phone"
+                id="phone-input"
+                placeholder="(999) 999-99-99"
+                required
+            />
+            <textarea
+                name="text"
+                id="text-input"
+                cols="30"
+                rows="10"
+                placeholder="Чем мы можем вам помочь?"></textarea>
+        </form>
+        <div class="request__submit">
+            <button type="submit" form="form"
+                ><Button href="" text="Отправить заявку" type="blue" /></button
+            >
+        </div>
+    </div>
+    <div class="request__footer">
+        <Image src={Hand} alt="hand" />
+    </div>
+</div>
+
+<style is:global>
+    .request {
+        background: url("assets/images/fills/form.png") no-repeat;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        border-radius: var(--block-radius);
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
+    .request__footer {
+        place-self: center end;
+        border-radius: var(--block-radius);
+        overflow: hidden;
+    }
+    .request__body :is(input, textarea) {
+        border-radius: 100px;
+        background: #fff;
+        padding: 16px 30px;
+        display: block;
+        border: none;
+    }
+    .request__body :is(textarea) {
+        border-radius: 20px;
+    }
+</style>
