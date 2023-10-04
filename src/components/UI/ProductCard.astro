@@ -1,0 +1,35 @@
+---
+import Button from "./Button.astro"
+interface Props {
+    element: Links
+}
+const {
+    element: { href, name },
+} = Astro.props
+---
+
+<div class="product-card">
+    <h4 class="product-card__title">{name}</h4>
+    <img src={href} alt="" />
+    <Button type="transparent" href="" text="Узнать подробнее" />
+</div>
+
+<style is:global>
+    .product-card {
+        border-radius: 20px;
+        background: #fff;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 15px;
+    }
+    .product-card > h4 {
+        color: var(--clr-black);
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 105%; /* 26.25px */
+        text-align: center;
+    }
+</style>

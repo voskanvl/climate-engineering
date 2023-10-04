@@ -30,6 +30,8 @@ const { title } = Astro.props
     :root {
         --transtion-time: 0.6s;
         --clr-footer: #38529f;
+        --clr-blue: var(--clr-footer);
+        --clr-black: #0d2137;
     }
     body {
         font-family: Inter, sans-serif;
@@ -37,6 +39,14 @@ const { title } = Astro.props
         padding: min(30px, 30 / 1920 * 100vw);
         padding-bottom: 0;
         color: #000;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Roboto Condensed", sans-serif;
     }
     a {
         color: inherit;

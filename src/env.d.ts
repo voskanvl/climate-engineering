@@ -12,3 +12,9 @@ declare interface Links {
     name: string
     href: string
 }
+declare interface Offer extends Links {
+    costs: {
+        old: number
+        new: number
+    }
+}

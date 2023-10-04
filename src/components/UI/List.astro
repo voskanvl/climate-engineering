@@ -1,0 +1,37 @@
+---
+interface Props {
+    title: string
+    arr: unknown[]
+}
+
+const { title, arr } = Astro.props
+---
+
+<div class="list">
+    <h2 class="list__title">{title}</h2>
+    <ul class="list__list">
+        {
+            Astro.slots.has("default") &&
+                arr &&
+                arr.map((e, idx) => <Fragment set:html={Astro.slots.render("default", [e, idx])} />)
+        }
+    </ul>
+</div>
+
+<style is:global>
+    .list__title {
+        color: var(--clr-black);
+        font-size: 45px;
+        font-weight: 500;
+        line-height: 105%; /* 47.25px */
+        text-align: center;
+    }
+    .list__list {
+        display: flex;
+        align-items: stretch;
+        gap: 20px;
+    }
+    .list__list > * {
+        flex: 1;
+    }
+</style>
