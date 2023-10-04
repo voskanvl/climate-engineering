@@ -22,3 +22,8 @@ declare interface Deal extends Links {
 declare interface PopularType extends Links {
     cost: number
 }
+declare interface JobsType {
+    caption: string
+    text: string
+    icon: string
+}

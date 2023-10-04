@@ -3,6 +3,7 @@ import Layout from "../layouts/main.astro"
 import Catalog from "@data/catalog.yml"
 import Deals from "@data/deals.yml"
 import PopularData from "@data/popular.yml"
+import Jobs from "@data/jobs.yml"
 
 import test from "../assets/images/catalog/1.png"
 import List from "@ui/List.astro"
@@ -13,6 +14,7 @@ import Popular from "@ui/Popular.astro"
 const catalog = Catalog as Links[]
 const deals = Deals as Deal[]
 const popular = PopularData as PopularType[]
+const jobs = Jobs as JobsType[]
 ---
 
 <Layout title="КлиматТехника">
@@ -25,5 +27,7 @@ const popular = PopularData as PopularType[]
     <List title="Популярные услуги" arr={popular}>
         {(e: PopularType) => <Popular element={e} />}
     </List>
-    <!-- <pre>{JSON.stringify(popular, null, 2)}</pre> -->
+    <List title="Как выглядит процесс работы" arr={jobs}>
+        {(e: JobsType) => <pre>{JSON.stringify(e, null, 2)}<img src={e.icon} alt=""/></pre>}
+    </List>
 </Layout>
