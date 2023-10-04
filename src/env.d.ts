@@ -29,6 +29,6 @@ declare interface PopularType extends Links {
 declare interface JobsType {
     caption: string
     text: string
-    icon: string
+    icon: ImageMetadata
     href: string
 }
