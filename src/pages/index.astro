@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/main.astro"
-import Catalog from "@data/catalog.yml"
-import Deals from "@data/deals.yml"
+import catalog from "@data/catalog"
+import deals from "@data/deals"
 import popular from "@data/popular"
-import JobsData from "@data/jobs.yml"
+import jobs from "@data/jobs"
 
 import List from "@ui/List.astro"
 import ProductCard from "@ui/ProductCard.astro"
@@ -12,9 +12,6 @@ import Popular from "@ui/Popular.astro"
 import Jobs from "@ui/Jobs.astro"
 import Request from "@blocks/Request.astro"
 
-const catalog = Catalog as Links[]
-const deals = Deals as Deal[]
-const jobs = JobsData as JobsType[]
 ---
 
 <Layout title="КлиматТехника">

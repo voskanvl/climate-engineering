@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro"
+import { Image } from "astro:assets"
 interface Props {
     deal: Deal
 }
@@ -14,7 +15,7 @@ const {
 ---
 
 <a class="deal" href={href}>
-    <img src={img} alt="" />
+    <Image src={img} alt="" />
     <div class="deal__caption">{name}</div>
     <div class="deal__const">
         <strike>{oldCost.toLocaleString()} ₽</strike>

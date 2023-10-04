@@ -15,7 +15,7 @@ declare module "*.png" {
 declare interface Links {
     name: string
     href: string
-    img: string
+    img: ImageMetadata
 }
 declare interface Deal extends Links {
     costs: {
