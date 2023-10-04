@@ -1,15 +1,20 @@
 - caption: Звонок или заявка
   text: "Вы оставляете заявку на сайте или звоните по телефону: <a href='tel:88412540620'>8 (8412) 540-620</a>"
   icon: "assets/images/icons/contacting.png"
+  href: ""
 - caption: Составление сметы
   text: Мы составляем смету на работу и материалы
   icon: "assets/images/icons/key.png"
+  href: ""
 - caption: Заключение договора
   text: Согласовываем смету, заключаем договор, прописываем сроки
   icon: "assets/images/icons/contract.png"
+  href: ""
 - caption: Выполнение работ
   text: В указанные договором сроки наша команда устанавливает кондиционер
   icon: "assets/images/icons/air-conditioner.png"
+  href: ""
 - caption: Выполнение работ
   text: В указанные договором сроки наша команда устанавливает кондиционер
   icon: "assets/images/icons/air-conditioner.png"
+  href: ""

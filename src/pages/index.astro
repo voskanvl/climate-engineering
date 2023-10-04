@@ -3,18 +3,19 @@ import Layout from "../layouts/main.astro"
 import Catalog from "@data/catalog.yml"
 import Deals from "@data/deals.yml"
 import PopularData from "@data/popular.yml"
-import Jobs from "@data/jobs.yml"
+import JobsData from "@data/jobs.yml"
 
 import test from "../assets/images/catalog/1.png"
 import List from "@ui/List.astro"
 import ProductCard from "@ui/ProductCard.astro"
 import Deal from "@ui/Deal.astro"
 import Popular from "@ui/Popular.astro"
+import Jobs from "@ui/Jobs.astro"
 
 const catalog = Catalog as Links[]
 const deals = Deals as Deal[]
 const popular = PopularData as PopularType[]
-const jobs = Jobs as JobsType[]
+const jobs = JobsData as JobsType[]
 ---
 
 <Layout title="КлиматТехника">
@@ -28,6 +29,6 @@ const jobs = Jobs as JobsType[]
         {(e: PopularType) => <Popular element={e} />}
     </List>
     <List title="Как выглядит процесс работы" arr={jobs}>
-        {(e: JobsType) => <pre>{JSON.stringify(e, null, 2)}<img src={e.icon} alt=""/></pre>}
+        {(e: JobsType) => <Jobs element={e}>}
     </List>
 </Layout>

@@ -26,4 +26,5 @@ declare interface JobsType {
     caption: string
     text: string
     icon: string
+    href: string
 }
