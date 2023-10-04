@@ -1,35 +1,29 @@
 ---
-import { Image, getImage } from "astro:assets"
 import Layout from "../layouts/main.astro"
-import Condey from "../assets/images/condey.png"
-import Sprite from "@ui/Sprite.astro"
 import Catalog from "@data/catalog.yml"
+import Deals from "@data/deals.yml"
+import PopularData from "@data/popular.yml"
 
 import test from "../assets/images/catalog/1.png"
 import List from "@ui/List.astro"
 import ProductCard from "@ui/ProductCard.astro"
+import Deal from "@ui/Deal.astro"
+import Popular from "@ui/Popular.astro"
 
 const catalog = Catalog as Links[]
+const deals = Deals as Deal[]
+const popular = PopularData as PopularType[]
 ---
 
 <Layout title="КлиматТехника">
-    <h1>
-        <span>Astro</span>
-        <Image src={Condey} alt="condey" />
-        <Sprite name="white-ref" />
-    </h1>
     <List title="Каталог товаров" arr={catalog}>
         {(e: Links) => <ProductCard element={e} />}
     </List>
-    <!-- <div>
-        {
-            catalog &&
-                catalog.map(e => (
-                    <div>
-                        <img src={e.href} alt="" />
-                        <span>{e.name}</span>
-                    </div>
-                ))
-        }
-    </div> -->
+    <List title="Выгодные предложения" arr={deals}>
+        {(e: Deal) => <Deal deal={e} />}
+    </List>
+    <List title="Популярные услуги" arr={popular}>
+        {(e: PopularType) => <Popular element={e} />}
+    </List>
+    <!-- <pre>{JSON.stringify(popular, null, 2)}</pre> -->
 </Layout>

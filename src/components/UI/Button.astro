@@ -9,7 +9,7 @@ interface Props {
 const { type, text, href } = Astro.props
 ---
 
-<a class="button" href={href} data-type={type}>
+<div class="button" data-type={type}>
     <span class="button__text">{text}</span>
     {
         {
@@ -17,7 +17,7 @@ const { type, text, href } = Astro.props
             transparent: <Sprite name="blue-ref" class="button__ref" />,
         }[type]
     }
-</a>
+</div>
 
 <style is:global>
     .button {

@@ -13,7 +13,11 @@ const { title, arr } = Astro.props
         {
             Astro.slots.has("default") &&
                 arr &&
-                arr.map((e, idx) => <Fragment set:html={Astro.slots.render("default", [e, idx])} />)
+                arr.map((e, idx) => (
+                    <li>
+                        <Fragment set:html={Astro.slots.render("default", [e, idx])} />
+                    </li>
+                ))
         }
     </ul>
 </div>
@@ -27,6 +31,7 @@ const { title, arr } = Astro.props
         text-align: center;
     }
     .list__list {
+        list-style: none;
         display: flex;
         align-items: stretch;
         gap: 20px;

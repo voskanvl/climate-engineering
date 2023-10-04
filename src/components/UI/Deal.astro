@@ -1,0 +1,67 @@
+---
+import Button from "./Button.astro"
+interface Props {
+    deal: Deal
+}
+const {
+    deal: {
+        name,
+        href,
+        img,
+        costs: { new: newCost, old: oldCost },
+    },
+} = Astro.props
+---
+
+<a class="deal" href={href}>
+    <img src={img} alt="" />
+    <div class="deal__caption">{name}</div>
+    <div class="deal__const">
+        <strike>{oldCost.toLocaleString()} ₽</strike>
+        <strong>{newCost.toLocaleString()} ₽</strong>
+    </div>
+    <Button type="transparent" text="Добавиь в корзину" href={href} />
+</a>
+
+<style is:global>
+    .deal {
+        height: 100%;
+        border-radius: 20px;
+        background: #fff;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .deal__caption {
+        color: var(--clr-black);
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .deal__const {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+    }
+    .deal__const > strike {
+        color: #d9d9d9;
+        text-align: center;
+        font-family: Roboto Condensed;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 105%; /* 18.9px */
+    }
+    .deal__const > strong {
+        color: var(--clr-blue);
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 105%; /* 26.25px */
+    }
+</style>

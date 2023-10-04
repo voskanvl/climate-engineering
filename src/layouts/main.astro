@@ -22,7 +22,7 @@ const { title } = Astro.props
 </html>
 
 <style is:global>
-    @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,regular,italic,700,700italic);
+    @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,regular,italic,400,500,700,700italic);
     @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
     :is(*, *::after, *::before) {
         box-sizing: border-box;
@@ -32,6 +32,8 @@ const { title } = Astro.props
         --clr-footer: #38529f;
         --clr-blue: var(--clr-footer);
         --clr-black: #0d2137;
+        --clr-gray: #d9d9d9;
+        --clr-salat: #ecf4fc;
     }
     body {
         font-family: Inter, sans-serif;

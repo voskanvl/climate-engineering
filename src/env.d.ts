@@ -11,10 +11,14 @@ declare module "*.yml" {
 declare interface Links {
     name: string
     href: string
+    img: string
 }
-declare interface Offer extends Links {
+declare interface Deal extends Links {
     costs: {
         old: number
         new: number
     }
+}
+declare interface PopularType extends Links {
+    cost: number
 }

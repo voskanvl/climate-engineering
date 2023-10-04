@@ -1,0 +1,74 @@
+---
+import Button from "./Button.astro"
+interface Props {
+    element: PopularType
+}
+const {
+    element: { name, href, img, cost },
+} = Astro.props
+---
+
+<a class="popular" href={href}>
+    <div class="popular__body">
+        <h3 class="popular__caption">{name}</h3>
+        <div class="popular__cost">от {cost} ₽</div>
+        <Button type="transparent" text="Узнать подробнее" href={href} />
+    </div>
+    <img class="popular__img" src={img} alt="" />
+</a>
+
+<style is:global>
+    .popular {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 258px;
+        border-radius: 20px;
+        background: var(--clr-salat);
+        padding: 10px;
+        overflow: hidden;
+    }
+    .popular:hover > .popular__img {
+        opacity: 1;
+    }
+    .popular > * {
+        position: absolute;
+        inset: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .popular__img {
+        pointer-events: none;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0;
+        transition: opacity var(--transtion-time);
+    }
+    .popular__body {
+        inset: 42px 10px 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 52px);
+        margin: auto;
+
+        font-family: "Roboto Condensed", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    .popular__caption {
+        color: var(--clr-black);
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 105%; /* 26.25px */
+    }
+    .popular__cost {
+        color: var(--clr-blue);
+        text-align: center;
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 105%; /* 36.75px */
+    }
+</style>

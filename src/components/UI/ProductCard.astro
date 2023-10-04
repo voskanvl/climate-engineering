@@ -4,18 +4,19 @@ interface Props {
     element: Links
 }
 const {
-    element: { href, name },
+    element: { href, name, img },
 } = Astro.props
 ---
 
-<div class="product-card">
+<a class="product-card" href={href}>
     <h4 class="product-card__title">{name}</h4>
-    <img src={href} alt="" />
+    <img src={img} alt="" />
     <Button type="transparent" href="" text="Узнать подробнее" />
-</div>
+</a>
 
 <style is:global>
     .product-card {
+        height: 100%;
         border-radius: 20px;
         background: #fff;
         padding: 10px;
