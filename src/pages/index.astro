@@ -2,11 +2,15 @@
 import { Image } from "astro:assets"
 import Layout from "../layouts/main.astro"
 import Condey from "../assets/images/condey.png"
+import Sprite from "@ui/Sprite.astro"
+const a = Astro.slots
 ---
 
 <Layout title="КлиматТехника">
     <h1>
+        <pre>{JSON.stringify(a)}</pre>
         <span>Astro</span>
         <Image src={Condey} alt="condey" />
+        <Sprite name="white-ref" />
     </h1>
 </Layout>

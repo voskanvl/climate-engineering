@@ -1,11 +1,16 @@
 import { defineConfig } from "astro/config"
 import yaml from "@rollup/plugin-yaml"
-import prefetch from "@astrojs/prefetch"
+import ViteSvgSpriteWrapper from "vite-svg-sprite-wrapper"
 
 // https://astro.build/config
 export default defineConfig({
     vite: {
-        plugins: [yaml()],
+        plugins: [
+            yaml(),
+            ViteSvgSpriteWrapper({
+                outputDir: "./public/assets/images",
+            }),
+        ],
         build: {
             rollupOptions: {
                 output: {
@@ -16,5 +21,4 @@ export default defineConfig({
             },
         },
     },
-    integrations: [prefetch()],
 })
