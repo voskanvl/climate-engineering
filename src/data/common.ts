@@ -6,8 +6,8 @@ const data = {
     phone: "+7 (8412) 540-620",
     email: "client@russiaws.ru",
     logo: {
-        white: "../assets/images/logo.png",
-        dark: "../assets/images/logo-dark.png",
+        white,
+        dark,
     },
 }
 export default data
