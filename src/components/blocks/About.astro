@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets"
+import Hand from "@images/jimmy-nilsson-masth-LfdLrB2B2aU-unsplash 1.png"
+import about from "@data/about"
+import Jobs from "@ui/Jobs.astro"
+---
+
+<div class="about">
+    <h2 class="about__title">О компании «КлиматТехника»</h2>
+    <div class="about__body">
+        <div class="about__left"><Image src={Hand} alt="jimmy nilsson masth" /></div>
+        <div class="about__right">
+            <div>
+                <h3 class="about__caption">
+                    «КлиматТехника» уже 20 лет работает в сфере поставок оборудования для общепита,
+                    торгового и холодильного оборудования на рынке города Пензы и Пензенской области
+                </h3>
+                <div class="about__grid">
+                    {about && about.map((e: JobsType) => <Jobs element={e} />)}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style is:global>
+    .about__title {
+        color: var(--clr-black);
+        font-size: 45px;
+        font-weight: 500;
+        line-height: 105%; /* 47.25px */
+        text-align: center;
+    }
+    .about__caption {
+        color: var(--clr-black);
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 105%; /* 26.25px */
+    }
+    .about__body {
+        display: flex;
+    }
+    .about__left {
+        flex: 1 1 33.333%;
+    }
+    .about__right {
+        flex: 1 1 76.666%;
+        padding-inline: calc(70 / 1920 * 100vw);
+        background: #fff;
+    }
+    .about__left > img {
+        border-radius: var(--block-radius);
+    }
+    .about__right {
+        display: grid;
+        place-items: center;
+        border-radius: var(--block-radius);
+    }
+    .about__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+    }
+</style>

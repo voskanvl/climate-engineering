@@ -23,6 +23,10 @@ const { title, arr } = Astro.props
 </div>
 
 <style is:global>
+    .list {
+        width: auto;
+        margin-bottom: 120px;
+    }
     .list__title {
         color: var(--clr-black);
         font-size: 45px;
@@ -31,6 +35,7 @@ const { title, arr } = Astro.props
         text-align: center;
     }
     .list__list {
+        padding-left: 0;
         list-style: none;
         display: flex;
         align-items: stretch;

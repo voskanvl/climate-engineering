@@ -1,0 +1,20 @@
+---
+const { background } = Astro.props
+---
+
+<div class="block" style={{ background }}>
+    <div>
+        <slot />
+    </div>
+</div>
+
+<style is:global>
+    .block {
+        border-radius: var(--block-radius);
+        display: grid;
+        grid-template-columns: 100%;
+        place-items: center;
+        margin: 20px 30px;
+        padding: 120px calc(100 / 1920 * 100vw);
+    }
+</style>
