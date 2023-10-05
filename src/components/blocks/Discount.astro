@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets"
+import Picture from "@images/pexels-max-rahubovskiy-6588599.jpg"
+import Button from "@ui/Button.astro"
+---
+
+<div class="discount">
+    <div class="discount__left">
+        <div>
+            <h2 class="discount__title">
+                Скидка 10% на установку сплит-<br />системы в квартиру или частный дом
+            </h2>
+            <p class="discount__text">
+                Оформите заявку на установку системы кондиционирования по специальной цене
+            </p>
+            <form action="" id="form-discount">
+                <input
+                    type="text"
+                    name="name"
+                    id="name-input"
+                    placeholder="Ваше имя"
+                    required
+                    form="form-discount"
+                />
+                <input
+                    type="tel"
+                    name="phone"
+                    id="phone-input"
+                    placeholder="(999) 999-99-99"
+                    required
+                    form="form-discount"
+                />
+                <div class="request__submit">
+                    <button type="submit" form="form-discount"
+                        ><Button href="" text="Отправить заявку" type="blue" /></button
+                    >
+                    <span class="discount__disclaimer">
+                        Нажимая на кнопку, вы соглашаетесь с <a href=""
+                            >политикой конфиденциальности</a
+                        >
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="discount__right">
+        <Image src={Picture} alt="pexels max rahubovskiy" />
+    </div>
+</div>
+
+<style is:global>
+    .discount {
+        display: flex;
+        height: min(625px, 71dvh);
+        position: relative;
+        margin-block: 120px;
+    }
+    .discount > * {
+        flex: 1;
+    }
+    .discount__left {
+        background: var(--clr-lightblue);
+        border-radius: 30px;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        padding: 1rem;
+    }
+    .discount__right {
+        z-index: -1;
+    }
+    .discount__right > img {
+        border-radius: 0 30px 30px 0;
+        translate: -50px 0;
+        width: calc(50% + 50px);
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+    }
+    .discount__title {
+        font-size: 45px;
+        font-weight: 500;
+        line-height: 105%; /* 47.25px */
+        margin: 0;
+        padding: 0;
+    }
+    .discount__text {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%; /* 23.4px */
+        max-width: 518px;
+        margin-block: 25px;
+    }
+    .discount__left form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 507px;
+    }
+    .discount__left .request__submit {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+    }
+    .discount__left .request__submit > span {
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 110%; /* 14.3px */
+    }
+    .discount__left .request__submit > span > a {
+        text-decoration: underline;
+    }
+</style>

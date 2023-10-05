@@ -15,6 +15,7 @@ import Request from "@blocks/Request.astro"
 import Specter from "@blocks/Specter.astro"
 
 import { Image } from "astro:assets"
+import Discount from "@blocks/Discount.astro"
 ---
 
 <Layout title="КлиматТехника">
@@ -24,10 +25,11 @@ import { Image } from "astro:assets"
     <List title="Выгодные предложения" arr={deals}>
         {(e: Deal) => <Deal deal={e} />}
     </List>
-    <Specter/>
+    <Specter />
     <List title="Популярные услуги" arr={popular}>
         {(e: PopularType) => <Popular element={e} />}
     </List>
+    <Discount />
     <List title="Как выглядит процесс работы" arr={jobs}>
         {(e: JobsType, idx: number) => <Jobs element={e} idx={idx + 1} />}
     </List>

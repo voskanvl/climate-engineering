@@ -11,13 +11,21 @@ import { Image } from "astro:assets"
     </div>
     <div class="request__body">
         <form action="" id="form">
-            <input type="text" name="name" id="name-input" placeholder="Ваше имя" required />
+            <input
+                type="text"
+                name="name"
+                id="name-input"
+                placeholder="Ваше имя"
+                required
+                form="form"
+            />
             <input
                 type="tel"
                 name="phone"
                 id="phone-input"
                 placeholder="(999) 999-99-99"
                 required
+                form="form"
             />
             <textarea
                 name="text"
@@ -25,6 +33,7 @@ import { Image } from "astro:assets"
                 cols="30"
                 rows="10"
                 placeholder="Чем мы можем вам помочь?"></textarea>
+             form="form"
         </form>
         <div class="request__submit">
             <button type="submit" form="form"
@@ -69,14 +78,14 @@ import { Image } from "astro:assets"
         gap: 10px;
         margin-bottom: 20px;
     }
-    .request__body :is(input, textarea) {
+    :is(input, textarea) {
         border-radius: 100px;
         background: #fff;
         padding: 16px 30px;
         display: block;
         border: none;
     }
-    .request__body :is(textarea) {
+    :is(textarea) {
         border-radius: 20px;
     }
     .request__submit {
