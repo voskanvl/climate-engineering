@@ -7,7 +7,7 @@ import { Image } from "astro:assets"
 <div class="request">
     <div class="request__header">
         <h2 class="request__title">Оформите заявку</h2>
-        <p class="request__text">Заполните форму, и мы свяжемся с Вами в ближайшее время</p>
+        <p class="request__text">Заполните форму, и мы свяжемся <br /> с Вами в ближайшее время</p>
     </div>
     <div class="request__body">
         <form action="" id="form">
@@ -47,11 +47,27 @@ import { Image } from "astro:assets"
         display: grid;
         place-items: center;
         grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        padding-left: 100px;
+        margin-bottom: 20px;
+    }
+    .request__header,
+    .request__body {
+        place-self: stretch center;
+        margin-top: 120px;
     }
     .request__footer {
         place-self: center end;
         border-radius: var(--block-radius);
         overflow: hidden;
+    }
+    .request__body {
+        width: min(509px, 100%);
+    }
+    .request__body > form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
     }
     .request__body :is(input, textarea) {
         border-radius: 100px;
@@ -62,5 +78,23 @@ import { Image } from "astro:assets"
     }
     .request__body :is(textarea) {
         border-radius: 20px;
+    }
+    .request__submit {
+        width: 50%;
+    }
+    .request__submit > button {
+        width: 100%;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    .request__title {
+        font-size: 45px;
+        font-weight: 500;
+        line-height: 105%; /* 47.25px */
+        margin: 0;
+        padding: 0;
     }
 </style>
