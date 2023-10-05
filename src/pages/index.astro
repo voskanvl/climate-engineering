@@ -4,6 +4,7 @@ import catalog from "@data/catalog"
 import deals from "@data/deals"
 import popular from "@data/popular"
 import jobs from "@data/jobs"
+import partners from "@data/partners"
 
 import List from "@ui/List.astro"
 import ProductCard from "@ui/ProductCard.astro"
@@ -11,7 +12,8 @@ import Deal from "@ui/Deal.astro"
 import Popular from "@ui/Popular.astro"
 import Jobs from "@ui/Jobs.astro"
 import Request from "@blocks/Request.astro"
-import partners from "@data/partners"
+import Specter from "@blocks/Specter.astro"
+
 import { Image } from "astro:assets"
 ---
 
@@ -22,6 +24,7 @@ import { Image } from "astro:assets"
     <List title="Выгодные предложения" arr={deals}>
         {(e: Deal) => <Deal deal={e} />}
     </List>
+    <Specter/>
     <List title="Популярные услуги" arr={popular}>
         {(e: PopularType) => <Popular element={e} />}
     </List>
