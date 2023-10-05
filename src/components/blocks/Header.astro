@@ -1,0 +1,99 @@
+---
+import Logo from "@images/logo-dark.png"
+import { Image } from "astro:assets"
+import Links from "@data/links.yml"
+import Sprite from "@ui/Sprite.astro"
+import common from "@data/common"
+
+const { links } = Links as { links: { name: string; href: string }[] }
+---
+
+<div class="header">
+    <a href="/">
+        <Image src={Logo} alt="logo" class="header__logo" />
+    </a>
+    <ul class="header__nav">
+        {links && links.map(({ name, href }) => <a href={href}>{name}</a>)}
+    </ul>
+    <div class="header__controls" style="color:#fff;">
+        <Sprite name="search" />
+        <Sprite name="white-cart" />
+    </div>
+
+    <div class="header__contacts-call">
+        <div class="header__contacts">
+            <a href={"tel:" + common.phone}>{common.phone}</a>
+            <div>{common.jobtime}</div>
+        </div>
+        <button class="header__call">Заказать звонок</button>
+    </div>
+</div>
+
+<style is:global>
+    .header {
+        margin-top: -100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 100px;
+        background: #fffa;
+        backdrop-filter: blur(15px);
+        padding: 7px;
+        width: calc(100% - (200 / 1920 * 100vw));
+        margin-inline: auto;
+    }
+    .header__logo {
+        flex: 0 0 244px;
+    }
+    .header__nav {
+        display: flex;
+        gap: calc(31 / 1920 * 100vw);
+    }
+    .header__call {
+        flex: 0 0 183px;
+        border-radius: 100px;
+        border: 1px solid var(--clr-blue);
+        color: var(--clr-blue);
+        font-weight: 600;
+        height: 54px;
+        display: grid;
+        place-items: center;
+        background: none;
+        cursor: pointer;
+    }
+    .header__controls {
+        display: flex;
+        justify-content: center;
+        align-self: start;
+        gap: 5px;
+        align-self: center;
+    }
+    .header__controls > svg {
+        display: block;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+    }
+    .header__contacts-call {
+        flex: 0 0 360px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .header__contacts {
+        justify-self: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .header__contacts > a {
+        color: var(--clr-black);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .header__contacts > div {
+        color: rgba(13, 33, 55, 0.7);
+        font-size: 13px;
+    }
+</style>

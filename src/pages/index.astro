@@ -14,13 +14,20 @@ import Jobs from "@ui/Jobs.astro"
 import Request from "@blocks/Request.astro"
 import Specter from "@blocks/Specter.astro"
 
-import { Image } from "astro:assets"
+import { Image, getImage } from "astro:assets"
 import Discount from "@blocks/Discount.astro"
 import About from "@blocks/About.astro"
 import Block from "@ui/Block.astro"
+
+import TizerBack from "@images/fills/tizer.png"
+import Tizer from "@blocks/Tizer.astro"
+const tizerback = await getImage({ src: TizerBack, format: "avif" })
 ---
 
 <Layout title="КлиматТехника">
+    <Block background="url('assets/images/fills/tizer.png') no-repeat">
+        <Tizer />
+    </Block>
     <Block background="#ECF4FC">
         <List title="Каталог товаров" arr={catalog}>
             {(e: Links) => <ProductCard element={e} />}
