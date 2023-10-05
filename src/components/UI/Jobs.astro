@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import Sprite from "./Sprite.astro"
 interface Props {
     element: JobsType
@@ -9,7 +10,7 @@ const {
 ---
 
 <div class="jobs">
-    <div class="jobs__top"><img src={icon} alt="" /></div>
+    <div class="jobs__top"><Image src={icon} alt="" /></div>
     <div class="jobs__top jobs__top--hidden"><Sprite name="blue-ref" /></div>
     <div class="jobs__body">
         <h3 class="jobs__caption">{caption}</h3>
