@@ -11,7 +11,8 @@ import Deal from "@ui/Deal.astro"
 import Popular from "@ui/Popular.astro"
 import Jobs from "@ui/Jobs.astro"
 import Request from "@blocks/Request.astro"
-
+import partners from "@data/partners"
+import { Image } from "astro:assets"
 ---
 
 <Layout title="КлиматТехника">
@@ -25,7 +26,10 @@ import Request from "@blocks/Request.astro"
         {(e: PopularType) => <Popular element={e} />}
     </List>
     <List title="Как выглядит процесс работы" arr={jobs}>
-        {(e: JobsType) => <Jobs element={e} />}
+        {(e: JobsType, idx: number) => <Jobs element={e} idx={idx + 1} />}
+    </List>
+    <List title="Наши партнеры" arr={partners}>
+        {(e: ImageMetadata) => <Image src={e} alt="" />}
     </List>
     <Request />
 </Layout>

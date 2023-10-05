@@ -3,9 +3,11 @@ import { Image } from "astro:assets"
 import Sprite from "./Sprite.astro"
 interface Props {
     element: JobsType
+    idx: number
 }
 const {
     element: { caption, text, icon, href },
+    idx,
 } = Astro.props
 ---
 
@@ -16,6 +18,7 @@ const {
         <h3 class="jobs__caption">{caption}</h3>
         <h3 class="jobs__caption jobs__caption--hidden">Оформить заявку</h3>
         <p class="jobs__text"><Fragment set:html={text} /></p>
+        <span class="jobs__idx">{idx}</span>
     </div>
     <a href={href} class="jobs__href"></a>
 </div>
@@ -35,7 +38,7 @@ const {
     .jobs:hover {
         background: var(--clr-blue);
     }
-    .jobs:hover :is(.jobs__caption, .jobs__text, .jobs__top) {
+    .jobs:hover :is(.jobs__caption, .jobs__text, .jobs__top, .jobs__idx) {
         opacity: 0;
     }
     .jobs:hover :is(.jobs__caption--hidden, .jobs__top--hidden) {
@@ -87,5 +90,26 @@ const {
     .jobs__href {
         position: absolute;
         inset: 0;
+    }
+    .jobs__idx {
+        border-radius: 50%;
+        background: #fff;
+        color: var(--, #0d2137);
+        text-align: center;
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 105%; /* 18.9px */
+        display: grid;
+        place-items: center;
+        position: absolute;
+        padding: 0.5em;
+        width: 40px;
+        height: 40px;
+        bottom: 1em;
+        right: 1em;
+        line-height: 1;
+        opacity: 1;
+        transition: opacity var(--transtion-time);
     }
 </style>
