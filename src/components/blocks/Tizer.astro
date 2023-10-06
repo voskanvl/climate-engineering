@@ -88,4 +88,16 @@ import SearchPanel from "@ui/SearchPanel.astro"
         height: auto;
         max-width: unset;
     }
+    @media (max-width: 1024px) {
+        .tizer__body {
+            display: grid;
+            grid-template-columns: 100%;
+            row-gap: 2rem;
+            margin-top: 0;
+        }
+        .tizer__left {
+            width: 100%;
+            max-width: unset;
+        }
+    }
 </style>
