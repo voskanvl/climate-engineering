@@ -60,6 +60,20 @@ const { title } = Astro.props
         display: block;
         max-width: 100%;
     }
+    :is(input, textarea) {
+        border-radius: 100px;
+        background: #fff;
+        padding: 16px 30px;
+        display: block;
+        border: none;
+        font-size: 18px;
+    }
+    :is(textarea) {
+        border-radius: 20px;
+    }
+    :is(input, textarea)::placeholder {
+        color: #bebebe;
+    }
     .container {
         width: min(1660px, 100% - 2rem);
         margin-inline: auto;

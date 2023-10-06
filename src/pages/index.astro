@@ -43,9 +43,11 @@ import Tizer from "@blocks/Tizer.astro"
         </List>
     </Block>
     <Discount />
-    <List title="Как выглядит процесс работы" arr={jobs}>
-        {(e: JobsType, idx: number) => <Jobs element={e} idx={idx + 1} />}
-    </List>
+    <Block background="#fff">
+        <List title="Как выглядит процесс работы" arr={jobs}>
+            {(e: JobsType, idx: number) => <Jobs element={e} idx={idx + 1} />}
+        </List>
+    </Block>
     <Block background="#ECF4FC">
         <About />
         <List title="Наши партнеры" arr={partners}>

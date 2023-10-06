@@ -36,9 +36,12 @@ import { Image } from "astro:assets"
                 form="form"></textarea>
         </form>
         <div class="request__submit">
-            <button type="submit" form="form"
+            <button type="submit" form="form-discount"
                 ><Button href="" text="Отправить заявку" type="blue" /></button
             >
+            <span class="discount__disclaimer">
+                Нажимая на кнопку, вы соглашаетесь с <a href="">политикой конфиденциальности</a>
+            </span>
         </div>
     </div>
     <div class="request__footer">
@@ -81,17 +84,7 @@ import { Image } from "astro:assets"
         gap: 10px;
         margin-bottom: 20px;
     }
-    :is(input, textarea) {
-        border-radius: 100px;
-        background: #fff;
-        padding: 16px 30px;
-        display: block;
-        border: none;
-        font-size: 18px;
-    }
-    :is(textarea) {
-        border-radius: 20px;
-    }
+
     .request__submit {
         width: 50%;
     }
@@ -110,5 +103,23 @@ import { Image } from "astro:assets"
         line-height: 105%; /* 47.25px */
         margin: 0;
         padding: 0;
+    }
+    .request__submit {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .request__submit > span {
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 110%; /* 14.3px */
+    }
+    .request__submit > span > a {
+        text-decoration: underline;
     }
 </style>

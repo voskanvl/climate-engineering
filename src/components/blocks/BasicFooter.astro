@@ -9,31 +9,37 @@ const links = data.links
 <footer class="footer">
     <div class="container footer__container">
         <div class="footer__up">
-            <a href="/">
-                <Image src={Logo} alt="logo" />
-            </a>
-            <nav class="footer__menu">
-                <ul>
-                    {
-                        links &&
-                            links.map((link: Links) => (
-                                <li>
-                                    <a href={link.href}>{link.name}</a>
-                                </li>
-                            ))
-                    }
-                </ul>
-            </nav>
-            <div class="footer__job">
-                <div>Aдрес: {common.address}</div>
-                <div>{common.jobtime}</div>
+            <div class="footer__left">
+                <a href="/">
+                    <Image src={Logo} alt="logo" />
+                </a>
+                <nav class="footer__menu">
+                    <ul>
+                        {
+                            links &&
+                                links.map((link: Links) => (
+                                    <li>
+                                        <a href={link.href}>{link.name}</a>
+                                    </li>
+                                ))
+                        }
+                    </ul>
+                </nav>
             </div>
-            <div class="footer__phone">
-                <a href={"tel:" + common.phone}>{common.phone}</a>
-            </div>
-            <div class="footer__end">
-                <button class="footer__call">Заказать звонок</button>
-                <a href={"mailto:" + common.email} class="footer__email">{common.email}</a>
+            <div class="footer__right">
+                <div class="footer__job">
+                    <div>Aдрес: {common.address}</div>
+                    <div>{common.jobtime}</div>
+                </div>
+                <div class="footer__left-left">
+                    <div class="footer__phone">
+                        <a href={"tel:" + common.phone}>{common.phone}</a>
+                    </div>
+                    <div class="footer__end">
+                        <button class="footer__call">Заказать звонок</button>
+                        <a href={"mailto:" + common.email} class="footer__email">{common.email}</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer__down">
@@ -66,16 +72,27 @@ const links = data.links
             grid-auto-rows: 1fr
             row-gap: 1rem
             padding-bottom: 50px
-            place-items: start center
             border-bottom: 1px solid #fff
 
             @media (width <= 768px)
                 place-items: center
+            & > *
+                flex: 1
+
+        &__left, &__right
+            display: flex
+            justify-content: space-between
+
+        &__left
+            margin-right: calc(111 / 1920 * 100vw)
 
         &__menu > ul
             list-style: none
             margin: 0
             padding: 0
+            display: flex
+            flex-direction: column
+            gap: 5px
 
         &__job, &__end
             place-self: stretch center
@@ -89,6 +106,14 @@ const links = data.links
 
         &__end
             align-items: flex-end
+            place-self: stretch end
+
+        &__left-left
+            display: flex
+            gap: 15px
+
+        &__phone
+            justify-self: flex-end
 
         &__call
             padding: 1em 25px

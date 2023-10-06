@@ -12,11 +12,12 @@ import Jobs from "@ui/Jobs.astro"
         <div class="about__right">
             <div>
                 <h3 class="about__caption">
-                    «КлиматТехника» уже 20 лет работает в сфере поставок оборудования для общепита,
-                    торгового и холодильного оборудования на рынке города Пензы и Пензенской области
+                    «КлиматТехника» уже 20 лет работает в сфере поставок оборудования <br />для
+                    общепита, торгового и холодильного оборудования на рынке города Пензы и
+                    Пензенской области
                 </h3>
                 <div class="about__grid">
-                    {about && about.map((e: JobsType) => <Jobs element={e} />)}
+                    {about && about.map((e: JobsType) => <Jobs element={e} height={200} />)}
                 </div>
             </div>
         </div>
@@ -24,6 +25,9 @@ import Jobs from "@ui/Jobs.astro"
 </div>
 
 <style is:global>
+    .about {
+        margin-bottom: 124px;
+    }
     .about__title {
         color: var(--clr-black);
         font-size: 45px;
@@ -45,14 +49,18 @@ import Jobs from "@ui/Jobs.astro"
         flex: 1 1 33.333%;
     }
     .about__left > img {
-        min-width: 110%;
+        min-width: 130%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
         z-index: 1;
         translate: 0 0;
     }
     .about__right {
         flex: 1 1 76.666%;
         padding-right: calc(70 / 1920 * 100vw);
-        padding-left: calc(120 / 1920 * 100vw);
+        padding-left: calc(210 / 1920 * 100vw);
+        padding-block: 70px;
         background: #fff;
     }
     .about__right > div {

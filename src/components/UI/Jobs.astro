@@ -4,14 +4,16 @@ import Sprite from "./Sprite.astro"
 interface Props {
     element: JobsType
     idx?: number
+    height?: number
 }
 const {
     element: { caption, text, icon, href },
     idx,
+    height,
 } = Astro.props
 ---
 
-<div class="jobs">
+<div class="jobs" style={{ height: (height || 258) + "px" }}>
     <div class="jobs__top"><Image src={icon} alt="" /></div>
     <div class="jobs__top jobs__top--hidden"><Sprite name="blue-ref" /></div>
     <div class="jobs__body">
@@ -75,9 +77,17 @@ const {
         padding: 0;
         opacity: 1;
         transition: opacity var(--transtion-time);
+
+        color: var(--clr-black);
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 105%; /* 18.9px */
     }
     .jobs__caption {
         margin-bottom: 15px;
+        font-size: 25px;
+        font-weight: 600;
     }
     .jobs__caption--hidden {
         color: #fff;
