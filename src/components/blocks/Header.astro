@@ -157,7 +157,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
 </style>
 
 <script>
-    import { MobileMenuEvents, ModalEvents } from "src/config/modalElents"
+    import { MobileMenuEvents, Actions } from "src/config/modalElents"
 
     {
         const header = document.querySelector<HTMLElement>(".header"),
@@ -174,10 +174,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
                     : searchPanel.classList.add("show")
             })
 
-        headerCall &&
-            headerCall.addEventListener("click", () => {
-                document.dispatchEvent(new CustomEvent(ModalEvents.modalShow, { bubbles: true }))
-            })
+        headerCall && headerCall.addEventListener("click", Actions.letModalShow)
 
         burger &&
             burger.addEventListener("click", () => {
