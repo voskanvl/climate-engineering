@@ -36,6 +36,7 @@ import Jobs from "@ui/Jobs.astro"
         font-size: 25px;
         font-weight: 500;
         line-height: 105%; /* 26.25px */
+        margin-top: 0;
     }
     .about__body {
         display: flex;
@@ -43,10 +44,18 @@ import Jobs from "@ui/Jobs.astro"
     .about__left {
         flex: 1 1 33.333%;
     }
+    .about__left > img {
+        min-width: 110%;
+        z-index: 1;
+        translate: 0 0;
+    }
     .about__right {
         flex: 1 1 76.666%;
-        padding-inline: calc(70 / 1920 * 100vw);
+        padding-right: calc(70 / 1920 * 100vw);
+        padding-left: calc(120 / 1920 * 100vw);
         background: #fff;
+    }
+    .about__right > div {
     }
     .about__left > img {
         border-radius: var(--block-radius);

@@ -12,12 +12,14 @@ const { links } = Links as { links: { name: string; href: string }[] }
     <a href="/">
         <Image src={Logo} alt="logo" class="header__logo" />
     </a>
-    <ul class="header__nav">
-        {links && links.map(({ name, href }) => <a href={href}>{name}</a>)}
-    </ul>
-    <div class="header__controls" style="color:#fff;">
-        <Sprite name="search" />
-        <Sprite name="white-cart" />
+    <div class="header__center">
+        <ul class="header__nav">
+            {links && links.map(({ name, href }) => <a href={href}>{name}</a>)}
+        </ul>
+        <div class="header__controls" style="color:#fff;">
+            <Sprite name="search" class="search-trigger" />
+            <Sprite name="white-cart" />
+        </div>
     </div>
 
     <div class="header__contacts-call">
@@ -39,21 +41,34 @@ const { links } = Links as { links: { name: string; href: string }[] }
         background: #fffa;
         backdrop-filter: blur(15px);
         padding: 7px;
-        width: calc(100% - (200 / 1920 * 100vw));
+        width: 100%;
         margin-inline: auto;
+        position: relative;
     }
     .header__logo {
         flex: 0 0 244px;
     }
+
+    .header__center {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+    }
     .header__nav {
         display: flex;
         gap: calc(31 / 1920 * 100vw);
+        padding-left: 0;
     }
     .header__call {
         flex: 0 0 183px;
         border-radius: 100px;
         border: 1px solid var(--clr-blue);
         color: var(--clr-blue);
+        font-size: 1rem;
         font-weight: 600;
         height: 54px;
         display: grid;
@@ -97,3 +112,17 @@ const { links } = Links as { links: { name: string; href: string }[] }
         font-size: 13px;
     }
 </style>
+
+<script>
+    {
+        const header = document.querySelector<HTMLElement>(".header")
+        const searchTrigger = document.querySelector<HTMLElement>(".search-trigger")
+        const searchPanel = document.querySelector<HTMLElement>(".search-panel")
+        searchTrigger &&
+            searchTrigger.addEventListener("click", () => {
+                searchPanel.classList.contains("show")
+                    ? searchPanel.classList.remove("show")
+                    : searchPanel.classList.add("show")
+            })
+    }
+</script>

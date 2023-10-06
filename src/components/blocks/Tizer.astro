@@ -1,5 +1,79 @@
 ---
 import Header from "./Header.astro"
+import { Image } from "astro:assets"
+import TizerImage from "@images/tizer.png"
+import Sprite from "@ui/Sprite.astro"
+import Button from "@ui/Button.astro"
+import SearchPanel from "@ui/SearchPanel.astro"
 ---
 
-<Header />
+<div class="tizer">
+    <Header />
+    <SearchPanel/>
+    <div class="tizer__body">
+        <div class="tizer__left">
+            <div class="tizer__garant">
+                <Sprite name="dot" />
+                <span>Гарантия на работу до 5 лет</span>
+            </div>
+            <h2 class="tizer__title">Доставка и установка кондиционеров в Пензе</h2>
+            <p class="tizer__text">
+                Широкий выбор промышленных и бытовых кондиционеров для домов, квартир и офисов
+            </p>
+            <Button type="blue" text="Перейти в каталог" href="" />
+        </div>
+        <div class="tizer__right">
+            <Image src={TizerImage} alt="tizer image" />
+        </div>
+    </div>
+</div>
+
+<style is:global>
+    .tizer__body {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 136px;
+    }
+    .tizer__left {
+        max-width: 552px;
+    }
+    .tizer__title {
+        color: var(--clr-black);
+        font-size: 55px;
+        font-weight: 500;
+        line-height: 105%; /* 57.75px */
+        margin: 0;
+        padding: 0;
+    }
+    .tizer__text {
+        margin-block: 30px;
+        padding: 0;
+        color: var(--clr-black);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%; /* 23.4px */
+    }
+    .tizer__left .button {
+        width: 50%;
+    }
+    .tizer__garant {
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 7px;
+        padding: 9px 20px;
+        width: max-content;
+        margin-bottom: 18px;
+    }
+    .tizer__garant > svg {
+        width: 13px;
+        height: 13px;
+    }
+    .tizer__garant > span {
+        color: var(--clr-black);
+        font-size: 13px;
+        font-weight: 500;
+    }
+</style>

@@ -21,7 +21,6 @@ import Block from "@ui/Block.astro"
 
 import TizerBack from "@images/fills/tizer.png"
 import Tizer from "@blocks/Tizer.astro"
-const tizerback = await getImage({ src: TizerBack, format: "avif" })
 ---
 
 <Layout title="КлиматТехника">
@@ -37,17 +36,21 @@ const tizerback = await getImage({ src: TizerBack, format: "avif" })
         </List>
         <a href="" class="watch-all">Смотреть все</a>
     </Block>
-    <Specter />
-    <List title="Популярные услуги" arr={popular}>
-        {(e: PopularType) => <Popular element={e} />}
-    </List>
+    <Block background="#fff">
+        <Specter />
+        <List title="Популярные услуги" arr={popular}>
+            {(e: PopularType) => <Popular element={e} />}
+        </List>
+    </Block>
     <Discount />
     <List title="Как выглядит процесс работы" arr={jobs}>
         {(e: JobsType, idx: number) => <Jobs element={e} idx={idx + 1} />}
     </List>
-    <About />
-    <List title="Наши партнеры" arr={partners}>
-        {(e: ImageMetadata) => <Image src={e} alt="" />}
-    </List>
+    <Block background="#ECF4FC">
+        <About />
+        <List title="Наши партнеры" arr={partners}>
+            {(e: ImageMetadata) => <Image src={e} alt="" />}
+        </List>
+    </Block>
     <Request />
 </Layout>

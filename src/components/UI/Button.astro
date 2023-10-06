@@ -3,7 +3,7 @@ import Sprite from "./Sprite.astro"
 interface Props {
     type: "blue" | "transparent"
     text: string
-    href: string
+    href?: string
 }
 
 const { type, text, href } = Astro.props
@@ -30,6 +30,7 @@ const { type, text, href } = Astro.props
         padding-left: 20px;
         width: 100%;
         color: var(--clr-blue);
+        cursor: pointer;
     }
     .button[data-type="blue"] {
         background: var(--clr-blue);

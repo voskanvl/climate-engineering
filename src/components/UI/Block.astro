@@ -2,7 +2,7 @@
 const { background } = Astro.props
 ---
 
-<div class="block" style={{ background }}>
+<div class="block" style={{ background, backgroundSize: "cover", backgroundPosition: "center" }}>
     <div>
         <slot />
     </div>
@@ -14,7 +14,7 @@ const { background } = Astro.props
         display: grid;
         grid-template-columns: 100%;
         place-items: center;
-        margin: 20px 30px;
+        margin: 20px 0px;
         padding: 120px calc(100 / 1920 * 100vw);
     }
     .block > div {

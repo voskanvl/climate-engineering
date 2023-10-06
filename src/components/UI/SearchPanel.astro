@@ -1,0 +1,62 @@
+---
+import Sprite from "@ui/Sprite.astro"
+---
+
+<div class="search-panel" style="color: #fff;">
+    <div class="search-panel__search">
+        <Sprite name="search" class="search-panel__find" />
+        <input type="text" id="finding" placeholder="Найти" />
+    </div>
+    <Sprite name="cross" class="search-panel__cross" />
+</div>
+
+<style is:global>
+    .search-panel {
+        opacity: 0;
+        translate: 0 -5px;
+        pointer-events: none;
+        height: 75px;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        background: #fff;
+        padding: 7px;
+        width: 100%;
+        margin-inline: auto;
+        transition:
+            opacity var(--transtion-time) 0.1s,
+            translate var(--transtion-time);
+    }
+    .search-panel.show {
+        opacity: 1;
+        translate: 0 0px;
+        pointer-events: all;
+        transition:
+            opacity var(--transtion-time),
+            translate var(--transtion-time) 0.1s;
+    }
+    .search-panel__search {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #0d213780;
+        width: 47%;
+    }
+    .search-panel__search > input {
+        padding-block: 6px;
+        outline: none;
+    }
+    .search-panel svg {
+        width: 25px;
+        height: 25px;
+    }
+    .search-panel > .search-panel__cross {
+        width: 13px;
+        height: 13px;
+        cursor: pointer;
+    }
+    .search-panel__find {
+        cursor: pointer;
+    }
+</style>
