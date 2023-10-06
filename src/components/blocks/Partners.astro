@@ -1,0 +1,36 @@
+---
+import partners from "@data/partners";
+import { Image } from "astro:assets"
+---
+<div class="partners">
+    <div class="partners__title">Наши партнеры</div>
+    <ul class="partners__list">
+        {
+            partners && partners.map(e=><li><Image src={e} alt=""/></Image></li>)
+        }
+    </ul>
+</div>
+
+<style is:global>
+    .partners__list{
+        list-style: none;
+        padding-left: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        /* display: flex;
+        justify-content: center;
+        flex-wrap: wrap; */
+        gap: 5px;
+    }
+    .partners__list > li{
+        flex: 1 0 100px;
+        border-radius:10px;
+        overflow: hidden;
+
+    }
+    .partners__list > li > img{
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: contain;
+    }
+</style>

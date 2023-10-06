@@ -29,17 +29,20 @@ import SearchPanel from "@ui/SearchPanel.astro"
 </div>
 
 <style is:global>
+    .tizer {
+        position: relative;
+    }
     .tizer__body {
         display: flex;
         justify-content: space-between;
-        margin-top: 136px;
+        margin-top: calc(136 / 1920 * 100vw);
     }
     .tizer__left {
         max-width: 552px;
     }
     .tizer__title {
         color: var(--clr-black);
-        font-size: 55px;
+        font-size: clamp(30px, 55 / 1920 * 100vw, 55px);
         font-weight: 600;
         line-height: 105%; /* 57.75px */
         margin: 0;
@@ -54,7 +57,7 @@ import SearchPanel from "@ui/SearchPanel.astro"
         line-height: 130%; /* 23.4px */
     }
     .tizer__left .button {
-        width: 50%;
+        max-width: max(225px, 50%);
     }
     .tizer__garant {
         border-radius: 100px;
@@ -75,5 +78,14 @@ import SearchPanel from "@ui/SearchPanel.astro"
         color: var(--clr-black);
         font-size: 13px;
         font-weight: 600;
+    }
+    .tizer__right {
+        flex: 0 0 50%;
+    }
+    .tizer__right > img {
+        width: 100%;
+        aspect-ratio: 933 / 533;
+        height: auto;
+        max-width: unset;
     }
 </style>

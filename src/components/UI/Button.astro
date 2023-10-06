@@ -28,7 +28,7 @@ const { type, text, href } = Astro.props
         border: 1px solid var(--clr-blue);
         padding: 5px;
         padding-left: 20px;
-        width: 100%;
+        width: max(225px, 100%);
         color: var(--clr-blue);
         cursor: pointer;
         font-weight: 600;
@@ -38,12 +38,15 @@ const { type, text, href } = Astro.props
         background: var(--clr-blue);
         color: #fff;
     }
+    .button__text {
+        white-space: nowrap;
+    }
     .button[data-type="transparent"] .button__text {
         color: var(--clr-blue);
     }
     .button .button__ref {
-        height: 45px;
         aspect-ratio: 1;
         color: inherit;
+        flex: 0 0 45px;
     }
 </style>

@@ -4,6 +4,7 @@ import { Image } from "astro:assets"
 import Links from "@data/links.yml"
 import Sprite from "@ui/Sprite.astro"
 import common from "@data/common"
+import MobileMenu from "./MobileMenu.astro"
 
 const { links } = Links as { links: { name: string; href: string }[] }
 ---
@@ -12,6 +13,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
     <a href="/">
         <Image src={Logo} alt="logo" class="header__logo" />
     </a>
+    <Sprite name="Burger" class="burger" />
     <div class="header__center">
         <ul class="header__nav">
             {links && links.map(({ name, href }) => <a href={href}>{name}</a>)}
@@ -29,11 +31,12 @@ const { links } = Links as { links: { name: string; href: string }[] }
         </div>
         <button class="header__call">Заказать звонок</button>
     </div>
+    <MobileMenu />
 </div>
 
 <style is:global>
     .header {
-        margin-top: -100px;
+        margin-top: calc(100 / -1920 * 100vw);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -43,7 +46,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
         padding: 7px;
         width: 100%;
         margin-inline: auto;
-        position: relative;
+        gap: 10px;
     }
     .header__logo {
         flex: 0 0 244px;
@@ -57,11 +60,15 @@ const { links } = Links as { links: { name: string; href: string }[] }
         position: absolute;
         inset: 0;
         margin: auto;
+        column-gap: 10px;
     }
     .header__nav {
         display: flex;
         gap: calc(31 / 1920 * 100vw);
         padding-left: 0;
+    }
+    .header__nav > * {
+        white-space: nowrap;
     }
     .header__call {
         flex: 0 0 183px;
@@ -111,16 +118,54 @@ const { links } = Links as { links: { name: string; href: string }[] }
         color: rgba(13, 33, 55, 0.7);
         font-size: 13px;
     }
+    @media (max-width: 1820px) {
+        .header__center {
+            width: 33.33%;
+        }
+    }
+    @media (max-width: 1480px) {
+        .header__center {
+            position: static;
+            width: unset;
+        }
+    }
+    @media (max-width: 1260px) {
+        .header__nav {
+            display: none;
+        }
+        .burger {
+            display: block;
+        }
+    }
+    @media (max-width: 1024px) {
+        .header__contacts {
+            display: none;
+        }
+        .header__contacts-call {
+            justify-content: flex-end;
+            flex: 0 0 180px;
+        }
+    }
+    @media (max-width: 650px) {
+        .header__contacts-call {
+            display: none;
+        }
+        .header__center {
+            margin: 0;
+        }
+    }
 </style>
 
 <script>
-    import { ModalEvents } from "src/config/modalElents"
+    import { MobileMenuEvents, ModalEvents } from "src/config/modalElents"
 
     {
         const header = document.querySelector<HTMLElement>(".header"),
             headerCall = document.querySelector<HTMLElement>(".header__call"),
             searchTrigger = document.querySelector<HTMLElement>(".search-trigger"),
-            searchPanel = document.querySelector<HTMLElement>(".search-panel")
+            searchPanel = document.querySelector<HTMLElement>(".search-panel"),
+            burger = document.querySelector<HTMLElement>(".burger"),
+            mobileMenu = document.querySelector<HTMLElement>(".mobile-menu")
 
         searchTrigger &&
             searchTrigger.addEventListener("click", () => {
@@ -132,6 +177,14 @@ const { links } = Links as { links: { name: string; href: string }[] }
         headerCall &&
             headerCall.addEventListener("click", () => {
                 document.dispatchEvent(new CustomEvent(ModalEvents.modalShow, { bubbles: true }))
+            })
+
+        burger &&
+            burger.addEventListener("click", () => {
+                if (!mobileMenu) return
+                mobileMenu.classList.contains("show")
+                    ? document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuClose))
+                    : document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuOpen))
             })
     }
 </script>

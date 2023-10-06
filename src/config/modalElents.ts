@@ -5,3 +5,8 @@ export const ModalEvents = {
     modalClosed: "modalclosed",
     modalMessage: "modalmessage",
 }
+
+export const MobileMenuEvents = {
+    mobileMenuOpen: "mobilemenuopen",
+    mobileMenuClose: "mobilemenuclose",
+}

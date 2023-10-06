@@ -50,6 +50,7 @@ const { title } = Astro.props
     h4,
     h5 {
         font-family: "Roboto Condensed", sans-serif;
+        margin-block: 0;
     }
     a {
         color: inherit;
@@ -58,7 +59,6 @@ const { title } = Astro.props
 
     img {
         display: block;
-        max-width: 100%;
     }
     :is(input, textarea) {
         border-radius: 100px;
@@ -89,5 +89,13 @@ const { title } = Astro.props
         height: 54px;
         margin-top: -70px;
         margin-inline: auto;
+    }
+    .burger {
+        height: 35px;
+        aspect-ratio: 1;
+        display: none;
+        translate: 0;
+        z-index: 2;
+        flex: 0 0 35px;
     }
 </style>

@@ -23,6 +23,7 @@ import Tizer from "@blocks/Tizer.astro"
 import Modal from "@ui/Modal.astro"
 import Feedback from "@ui/Feedback.astro"
 import FormMessage from "@ui/FormMessage.astro"
+import Partners from "@blocks/Partners.astro"
 ---
 
 <Layout title="КлиматТехника">
@@ -56,9 +57,10 @@ import FormMessage from "@ui/FormMessage.astro"
     </Block>
     <Block background="#ECF4FC">
         <About />
-        <List title="Наши партнеры" arr={partners}>
+        <!-- <List title="Наши партнеры" arr={partners}>
             {(e: ImageMetadata) => <Image src={e} alt="" />}
-        </List>
+        </List> -->
+        <Partners />
     </Block>
     <Request />
 </Layout>

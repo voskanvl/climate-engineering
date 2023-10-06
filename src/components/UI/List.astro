@@ -36,6 +36,7 @@ const { title, arr } = Astro.props
         font-weight: 600;
         line-height: 105%; /* 47.25px */
         text-align: center;
+        margin-bottom: calc(50 / 1920 * 100vw);
     }
     .list__list {
         padding-left: 0;
@@ -43,8 +44,9 @@ const { title, arr } = Astro.props
         display: flex;
         align-items: stretch;
         gap: 20px;
+        flex-wrap: wrap;
     }
     .list__list > * {
-        flex: 1;
+        flex: 1 1 300px;
     }
 </style>
