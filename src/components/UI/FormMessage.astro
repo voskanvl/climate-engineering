@@ -44,10 +44,12 @@ import Modal from "./Modal.astro"
                 formMessageBody.innerHTML = event.detail?.message
                 formMessage && formMessage.classList.add("show")
                 document.body.style.height = "100dvh"
+                document.body.style.marginRight = "18px"
                 document.body.style.overflow = "hidden"
 
                 setTimeout(() => {
                     document.body.style.height = ""
+                    document.body.style.marginRight = ""
                     document.body.style.overflow = ""
                     formMessage && formMessage.classList.remove("show")
                 }, RETURN_TIME)

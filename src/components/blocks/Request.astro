@@ -10,14 +10,14 @@ import { Image } from "astro:assets"
         <p class="request__text">Заполните форму, и мы свяжемся <br /> с Вами в ближайшее время</p>
     </div>
     <div class="request__body">
-        <form action="" id="form">
+        <form action="/mail.php" id="form-request">
             <input
                 type="text"
                 name="name"
                 id="name-input"
                 placeholder="Ваше имя"
                 required
-                form="form"
+                form="form-request"
             />
             <input
                 type="tel"
@@ -25,7 +25,7 @@ import { Image } from "astro:assets"
                 id="phone-input"
                 placeholder="(999) 999-99-99"
                 required
-                form="form"
+                form="form-request"
             />
             <textarea
                 name="text"
@@ -33,10 +33,10 @@ import { Image } from "astro:assets"
                 cols="30"
                 rows="5"
                 placeholder="Чем мы можем вам помочь?"
-                form="form"></textarea>
+                form="form-request"></textarea>
         </form>
         <div class="request__submit">
-            <button type="submit" form="form-discount"
+            <button type="submit" form="form-request"
                 ><Button href="" text="Отправить заявку" type="blue" /></button
             >
             <span class="discount__disclaimer">
@@ -123,3 +123,63 @@ import { Image } from "astro:assets"
         text-decoration: underline;
     }
 </style>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+
+    {
+        const requestForm = document.querySelector<HTMLFormElement>("#form-request"),
+            phone = document.querySelector<HTMLFormElement>(
+                ".request > .request__body input[type='tel']",
+            )
+
+        requestForm &&
+            requestForm.addEventListener("submit", async (event: Event) => {
+                event.preventDefault()
+                const fd = new FormData(requestForm)
+                try {
+                    const res = await fetch(requestForm.action, {
+                        method: "POST",
+                        body: fd,
+                    })
+                    res.ok
+                        ? document.dispatchEvent(
+                              new CustomEvent(ModalEvents.modalMessage, {
+                                  detail: { message: "Ok! We call you later" },
+                              }),
+                          )
+                        : document.dispatchEvent(
+                              new CustomEvent(ModalEvents.modalMessage, {
+                                  detail: { message: "Fail! Try again later" },
+                              }),
+                          )
+                } catch (error) {
+                    document.dispatchEvent(
+                        new CustomEvent(ModalEvents.modalMessage, {
+                            detail: { message: "Fail! Try again later" },
+                        }),
+                    )
+                }
+            })
+        const phoneMask = phone => {
+            return phone
+                .replace(/\D/g, "")
+                .replace(/^(\d)/, "($1")
+                .replace(/^(\(\d{3})(\d)/, "$1) $2")
+                .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+                .replace(/(-\d{2})(\d{1,2})$/, "$1-$2")
+                .replace(/(-\d{2})(\d{2})(\d+)$/, "$1-$2")
+        }
+
+        phone &&
+            phone.addEventListener("input", event => {
+                const { value } = event.target as HTMLInputElement
+                const str =
+                    value.replace(/\D/g, "").length >= 10
+                        ? ""
+                        : "Номер телефона должен состоять из 10 цифр"
+                phone.setCustomValidity(str)
+                ;(event.target as HTMLInputElement).value = phoneMask(value)
+            })
+    }
+</script>

@@ -13,7 +13,7 @@ import Button from "@ui/Button.astro"
             <p class="discount__text">
                 Оформите заявку на установку системы кондиционирования по специальной цене
             </p>
-            <form action="" id="form-discount">
+            <form action="/mail.php" id="form-discount">
                 <input
                     type="text"
                     name="name"
@@ -118,3 +118,43 @@ import Button from "@ui/Button.astro"
         text-decoration: underline;
     }
 </style>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+
+    {
+        const discountForm = document.querySelector<HTMLFormElement>("#form-discount")
+        discountForm &&
+            discountForm.addEventListener("submit", async (event: Event) => {
+                event.preventDefault()
+                const fd = new FormData(discountForm)
+                fd.append(
+                    "message",
+                    "Скидка 10% на установку сплит-системы в квартиру или частный дом",
+                )
+                try {
+                    const res = await fetch(discountForm.action, {
+                        method: "POST",
+                        body: fd,
+                    })
+                    res.ok
+                        ? document.dispatchEvent(
+                              new CustomEvent(ModalEvents.modalMessage, {
+                                  detail: { message: "Ok! We call you later" },
+                              }),
+                          )
+                        : document.dispatchEvent(
+                              new CustomEvent(ModalEvents.modalMessage, {
+                                  detail: { message: "Fail! Try again later" },
+                              }),
+                          )
+                } catch (error) {
+                    document.dispatchEvent(
+                        new CustomEvent(ModalEvents.modalMessage, {
+                            detail: { message: "Fail! Try again later" },
+                        }),
+                    )
+                }
+            })
+    }
+</script>
