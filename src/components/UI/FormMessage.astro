@@ -1,0 +1,56 @@
+---
+import Modal from "./Modal.astro"
+---
+
+<div class="form-message">
+    <div class="form-message__body"></div>
+</div>
+
+<style>
+    .form-message {
+        position: fixed;
+        z-index: 2;
+        inset: 0;
+        background: #fff1;
+        backdrop-filter: blur(4px);
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transtion-time);
+    }
+    .form-message__body {
+        background: #fff;
+        border-radius: 20px;
+        position: relative;
+        max-width: 500px;
+        max-height: 421px;
+        padding: calc(51 / 1920 * 100vw);
+    }
+    .form-message.show {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+    {
+        const RETURN_TIME = 3000
+        const formMessageBody = document.querySelector<HTMLDivElement>(".form-message__body"),
+            formMessage = document.querySelector<HTMLDivElement>(".form-message")
+
+        formMessageBody &&
+            document.addEventListener(ModalEvents.modalMessage, (event: CustomEvent) => {
+                formMessageBody.innerHTML = event.detail?.message
+                formMessage && formMessage.classList.add("show")
+                document.body.style.height = "100dvh"
+                document.body.style.overflow = "hidden"
+
+                setTimeout(() => {
+                    document.body.style.height = ""
+                    document.body.style.overflow = ""
+                    formMessage && formMessage.classList.remove("show")
+                }, RETURN_TIME)
+            })
+    }
+</script>

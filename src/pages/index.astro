@@ -19,11 +19,17 @@ import Discount from "@blocks/Discount.astro"
 import About from "@blocks/About.astro"
 import Block from "@ui/Block.astro"
 
-import TizerBack from "@images/fills/tizer.png"
 import Tizer from "@blocks/Tizer.astro"
+import Modal from "@ui/Modal.astro"
+import Feedback from "@ui/Feedback.astro"
+import FormMessage from "@ui/FormMessage.astro"
 ---
 
 <Layout title="КлиматТехника">
+    <Modal id="main-modal">
+        <Feedback />
+    </Modal>
+    <FormMessage />
     <Block background="url('assets/images/fills/tizer.png') no-repeat">
         <Tizer />
     </Block>
@@ -56,3 +62,18 @@ import Tizer from "@blocks/Tizer.astro"
     </Block>
     <Request />
 </Layout>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+
+    {
+        document.addEventListener(ModalEvents.modalShowed, () => {
+            document.body.style.height = "100dvh"
+            document.body.style.overflow = "hidden"
+        })
+        document.addEventListener(ModalEvents.modalClosed, () => {
+            document.body.style.height = ""
+            document.body.style.overflow = ""
+        })
+    }
+</script>

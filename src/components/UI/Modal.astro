@@ -1,0 +1,47 @@
+---
+interface Props {
+    id: string
+}
+const { id } = Astro.props
+---
+
+<div class="modal" id={id}>
+    <slot />
+</div>
+
+<style is:global>
+    .modal {
+        position: fixed;
+        z-index: 2;
+        inset: 0;
+        background: #fff1;
+        backdrop-filter: blur(4px);
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transtion-time);
+    }
+    .modal.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+</style>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+    ;(function () {
+        const modal = document.querySelector(".modal")
+        if (!modal) return
+
+        document.addEventListener(ModalEvents.modalShow, () => {
+            modal.classList.add("show")
+            document.dispatchEvent(new CustomEvent(ModalEvents.modalShowed))
+        })
+
+        document.addEventListener(ModalEvents.modalClose, () => {
+            modal.classList.remove("show")
+            document.dispatchEvent(new CustomEvent(ModalEvents.modalClosed))
+        })
+    })()
+</script>

@@ -1,0 +1,142 @@
+---
+import Sprite from "./Sprite.astro"
+---
+
+<div class="feedback">
+    <div class="feedback__close"><Sprite name="cross" /></div>
+    <div class="feedback__body">
+        <h2 class="feedback__title">Закажите обратный звонок</h2>
+        <form action="/" id="feedback-form">
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="tel" name="phone" placeholder="(999) 999-99-99" required />
+            <input type="submit" value="Заказать звонок" />
+        </form>
+        <p class="feedback__disclaimer">
+            Нажимая на кнопку, вы соглашаетесь<br /> с <a href="">политикой конфиденциальности</a>
+        </p>
+    </div>
+</div>
+
+<style is:global>
+    .feedback {
+        background: #fff;
+        border-radius: 20px;
+        position: relative;
+        max-width: 500px;
+        max-height: 421px;
+        padding: calc(51 / 1920 * 100vw);
+    }
+    .feedback__title {
+        color: var(--clr-black);
+        text-align: center;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 105%; /* 26.25px */
+        padding: 0;
+        margin: 0;
+        margin-bottom: 30px;
+    }
+    .feedback__close {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        top: calc(25 / 1920 * 100vw);
+        right: calc(25 / 1920 * 100vw);
+        cursor: pointer;
+    }
+    .feedback__close > svg {
+        width: 100%;
+        height: 100%;
+    }
+    .feedback__disclaimer {
+        color: #bebebe;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 110%; /* 14.3px */
+    }
+    .feedback__disclaimer > a {
+        text-decoration: underline;
+    }
+
+    .feedback__body input:not([type="submit"]) {
+        border: 1px solid var(--clr-black);
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .feedback__body input[type="submit"] {
+        width: 100%;
+        color: #fff;
+        background: var(--clr-blue);
+    }
+</style>
+
+<script>
+    import { ModalEvents } from "src/config/modalElents"
+    ;(function () {
+        const close = document.querySelector<HTMLElement>(".feedback__close"),
+            feedbackBody = document.querySelector<HTMLElement>(".feedback__body"),
+            form = document.querySelector<HTMLFormElement>("#feedback-form"),
+            phone = document.querySelector<HTMLInputElement>(".feedback input[type='tel']")
+
+        close &&
+            close.addEventListener("click", () => {
+                document.dispatchEvent(new CustomEvent(ModalEvents.modalClose, { bubbles: true }))
+            })
+
+        const showMessage = (opt: { message: string; type: "success" | "reject" }) => {
+            const RETURN_TIME = 3000
+
+            if (!feedbackBody) return
+            const oldInner = feedbackBody.innerHTML
+            feedbackBody.innerHTML = opt.message
+            setTimeout(() => {
+                feedbackBody.innerHTML = oldInner
+                document.dispatchEvent(new CustomEvent(ModalEvents.modalClose, { bubbles: true }))
+            }, RETURN_TIME)
+        }
+
+        const submitForm = async (event: Event) => {
+            event.preventDefault()
+            const body = new FormData(form)
+            try {
+                const res = await fetch(form.action, {
+                    method: "POST",
+                    body,
+                })
+                res.ok
+                    ? showMessage({
+                          message:
+                              "Ваша заявка успешно оформлена, мы свяжемся с вами в ближайшее время",
+                          type: "success",
+                      })
+                    : showMessage({ message: "не получилось", type: "reject" })
+            } catch (error) {
+                showMessage({ message: "", type: "reject" })
+            }
+        }
+
+        form && form.addEventListener("submit", submitForm)
+
+        const phoneMask = phone => {
+            return phone
+                .replace(/\D/g, "")
+                .replace(/^(\d)/, "($1")
+                .replace(/^(\(\d{3})(\d)/, "$1) $2")
+                .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+                .replace(/(-\d{2})(\d{1,2})$/, "$1-$2")
+                .replace(/(-\d{2})(\d{2})(\d+)$/, "$1-$2")
+        }
+
+        phone &&
+            phone.addEventListener("input", event => {
+                const { value } = event.target as HTMLInputElement
+                const str =
+                    value.replace(/\D/g, "").length >= 10
+                        ? ""
+                        : "Номер телефона должен состоять из 10 цифр"
+                phone.setCustomValidity(str)
+                ;(event.target as HTMLInputElement).value = phoneMask(value)
+            })
+    })()
+</script>

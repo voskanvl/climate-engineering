@@ -114,15 +114,24 @@ const { links } = Links as { links: { name: string; href: string }[] }
 </style>
 
 <script>
+    import { ModalEvents } from "src/config/modalElents"
+
     {
-        const header = document.querySelector<HTMLElement>(".header")
-        const searchTrigger = document.querySelector<HTMLElement>(".search-trigger")
-        const searchPanel = document.querySelector<HTMLElement>(".search-panel")
+        const header = document.querySelector<HTMLElement>(".header"),
+            headerCall = document.querySelector<HTMLElement>(".header__call"),
+            searchTrigger = document.querySelector<HTMLElement>(".search-trigger"),
+            searchPanel = document.querySelector<HTMLElement>(".search-panel")
+
         searchTrigger &&
             searchTrigger.addEventListener("click", () => {
                 searchPanel.classList.contains("show")
                     ? searchPanel.classList.remove("show")
                     : searchPanel.classList.add("show")
+            })
+
+        headerCall &&
+            headerCall.addEventListener("click", () => {
+                document.dispatchEvent(new CustomEvent(ModalEvents.modalShow, { bubbles: true }))
             })
     }
 </script>
