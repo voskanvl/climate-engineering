@@ -70,7 +70,7 @@ const {
     }
     .jobs__body {
         text-align: center;
-        translate: 0;
+        /* translate: 0; */
     }
     .jobs__caption,
     .jobs__text {
@@ -81,13 +81,13 @@ const {
 
         color: var(--clr-black);
         text-align: center;
-        font-size: 18px;
+        font-size: clamp(12px, 18 / 1920 * 100vw,18px);
         font-weight: 600;
         line-height: 105%; /* 18.9px */
     }
     .jobs__caption {
         margin-bottom: 15px;
-        font-size: 25px;
+        font-size: clamp(18px, 25 / 1920 * 100vw,25px);
         font-weight: 600;
     }
     .jobs__caption--hidden {

@@ -6,7 +6,7 @@ import Jobs from "@ui/Jobs.astro"
 ---
 
 <div class="about">
-    <h2 class="about__title">О компании «КлиматТехника»</h2>
+    <h2 class="about__title ">О компании «КлиматТехника»</h2>
     <div class="about__body">
         <div class="about__left"><Image src={Hand} alt="jimmy nilsson masth" /></div>
         <div class="about__right">
@@ -30,17 +30,19 @@ import Jobs from "@ui/Jobs.astro"
     }
     .about__title {
         color: var(--clr-black);
-        font-size: 45px;
+        font-size: clamp(20px,45 / 1920 * 100vw,45px);
         font-weight: 600;
         line-height: 105%; /* 47.25px */
         text-align: center;
+        margin-bottom: calc(50 / 1920 * 100vw);
     }
     .about__caption {
         color: var(--clr-black);
-        font-size: 25px;
+        font-size: clamp(14px,25 / 1920 * 100vw,25px);
         font-weight: 600;
         line-height: 105%; /* 26.25px */
-        margin-top: 0;
+        margin-block: 0 calc(50 / 1920 * 100vw);
+
     }
     .about__body {
         display: flex;
@@ -80,11 +82,15 @@ import Jobs from "@ui/Jobs.astro"
         grid-template-rows: repeat(2, 1fr);
         gap: 20px;
     }
+    .about__grid .jobs__body{
+        translate: 0;
+    }
     @media (max-width: 1024px) {
         .about__body {
             display: grid;
             grid-template-columns: 100%;
             grid-template-rows: 50dvh auto;
+            margin-top: -50px;
         }
         .about__left > img {
             width: 100%;
