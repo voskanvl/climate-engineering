@@ -60,3 +60,15 @@ import Sprite from "@ui/Sprite.astro"
         cursor: pointer;
     }
 </style>
+
+<script>
+    {
+        const searchPanelCross = document.querySelector<HTMLElement>(".search-panel__cross"),
+            input = document.querySelector<HTMLInputElement>("#finding")
+
+        searchPanelCross &&
+            searchPanelCross.addEventListener("click", () => {
+                input && (input.value = "")
+            })
+    }
+</script>
