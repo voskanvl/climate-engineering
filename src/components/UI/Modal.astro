@@ -27,21 +27,3 @@ const { id } = Astro.props
         pointer-events: all;
     }
 </style>
-
-<script>
-    import { ModalEvents } from "src/config/modalElents"
-    ;(function () {
-        const modal = document.querySelector(".modal")
-        if (!modal) return
-
-        document.addEventListener(ModalEvents.modalShow, () => {
-            modal.classList.add("show")
-            document.dispatchEvent(new CustomEvent(ModalEvents.modalShowed))
-        })
-
-        document.addEventListener(ModalEvents.modalClose, () => {
-            modal.classList.remove("show")
-            document.dispatchEvent(new CustomEvent(ModalEvents.modalClosed))
-        })
-    })()
-</script>

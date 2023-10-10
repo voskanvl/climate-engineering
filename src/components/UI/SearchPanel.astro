@@ -71,6 +71,7 @@ import Sprite from "@ui/Sprite.astro"
 
         document.addEventListener(SearchPanel.searchPanelShow, () => {
             searchPanel.classList.add("show")
+            input.focus()
         })
         document.addEventListener(SearchPanel.searchPanelHide, () => {
             searchPanel.classList.remove("show")

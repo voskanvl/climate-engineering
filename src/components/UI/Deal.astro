@@ -15,11 +15,15 @@ const {
 ---
 
 <a class="deal" href={href}>
-    <Image src={img} alt="" />
-    <div class="deal__caption">{name}</div>
-    <div class="deal__const">
-        <strike>{oldCost.toLocaleString()} ₽</strike>
-        <strong>{newCost.toLocaleString()} ₽</strong>
+    <div class="deal__img">
+        <Image src={img} alt="" />
+    </div>
+    <div class="deal__body">
+        <div class="deal__caption">{name}</div>
+        <div class="deal__const">
+            <strike>{oldCost.toLocaleString()} ₽</strike>
+            <strong>{newCost.toLocaleString()} ₽</strong>
+        </div>
     </div>
     <Button type="transparent" text="Добавить в корзину" href={href} />
 </a>
@@ -30,20 +34,28 @@ const {
         border-radius: 20px;
         background: #fff;
         padding: 10px;
-        padding-top: 80px;
-        display: flex;
+        display: grid;
+        grid-template-rows: 2fr 1fr auto;
+        /* padding-top: 80px; */
+        /* display: flex;
         flex-direction: column;
         gap: 15px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-between; */
         container: deal / inline-size;
+    }
+
+    .deal > :first-child > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     .deal__caption {
         color: var(--clr-black);
         text-align: center;
         /* font-size: clamp(12px, 18 / 1920 * 100vw, 18px); */
         font-size: 6cqw;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     .deal__const {
@@ -60,14 +72,14 @@ const {
         font-family: Roboto Condensed;
         font-size: 18px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 105%; /* 18.9px */
     }
     .deal__const > strong {
         color: var(--clr-blue);
         text-align: center;
         font-size: 25px;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 105%; /* 26.25px */
     }
     .deal > img {

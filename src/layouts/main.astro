@@ -21,7 +21,7 @@ const { title } = Astro.props
 </html>
 
 <style is:global>
-    @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,regular,italic,400,500,700,700italic);
+    @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
     @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
     :is(*, *::after, *::before) {
         box-sizing: border-box;
@@ -85,10 +85,10 @@ const { title } = Astro.props
         border-radius: 100px;
         border: 1px solid var(--clr-blue);
         color: var(--clr-blue);
-        font-weight: 600;
+        font-weight: 500;
         width: 183px;
         height: 54px;
-        margin-top: -70px;
+        margin-top: 0px;
         margin-inline: auto;
     }
     .burger {
@@ -103,7 +103,7 @@ const { title } = Astro.props
         font-family: "Roboto Condensed", sans-serif;
         color: var(--clr-black);
         font-size: clamp(30px, 45 / 1920 * 100vw, 45px);
-        font-weight: 600;
+        font-weight: 500;
         line-height: 105%; /* 47.25px */
         margin: 0;
         padding: 0;

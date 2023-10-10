@@ -1,21 +1,26 @@
 ---
+import Modal from "./Modal.astro"
 import Sprite from "./Sprite.astro"
 ---
 
-<div class="feedback">
-    <div class="feedback__close"><Sprite name="cross" /></div>
-    <div class="feedback__body">
-        <h2 class="feedback__title title">Закажите обратный звонок</h2>
-        <form action="/" id="feedback-form">
-            <input type="text" name="name" placeholder="Ваше имя" required />
-            <input type="tel" name="phone" placeholder="(999) 999-99-99" required />
-            <input type="submit" value="Заказать звонок" />
-        </form>
-        <p class="feedback__disclaimer">
-            Нажимая на кнопку, вы соглашаетесь<br /> с <a href="">политикой конфиденциальности</a>
-        </p>
+<Modal id="main-modal">
+    <div class="feedback">
+        <div class="feedback__close"><Sprite name="cross" /></div>
+        <div class="feedback__body">
+            <h2 class="feedback__title title">Закажите обратный звонок</h2>
+            <form action="/" id="feedback-form">
+                <input type="text" name="name" placeholder="Ваше имя" required />
+                <input type="tel" name="phone" placeholder="(999) 999-99-99" required />
+                <input type="submit" value="Заказать звонок" />
+            </form>
+            <p class="feedback__disclaimer">
+                Нажимая на кнопку, вы соглашаетесь<br /> с <a href=""
+                    >политикой конфиденциальности</a
+                >
+            </p>
+        </div>
     </div>
-</div>
+</Modal>
 
 <style is:global>
     .feedback {
@@ -30,8 +35,8 @@ import Sprite from "./Sprite.astro"
         position: absolute;
         width: 13px;
         height: 13px;
-        top: calc(25 / 1920 * 100vw);
-        right: calc(25 / 1920 * 100vw);
+        top: clamp(10px, 25 / 1920 * 100vw, 25px);
+        right: clamp(10px, 25 / 1920 * 100vw, 25px);
         cursor: pointer;
     }
     .feedback__close > svg {
@@ -59,6 +64,22 @@ import Sprite from "./Sprite.astro"
         color: #fff;
         background: var(--clr-blue);
     }
+    .feedback__title.title {
+        font-size: clamp(20px, 45 / 1920 * 100vw, 45px);
+    }
+    @media (max-width: 768px) {
+        .feedback__close {
+            top: -20px;
+            right: -5px;
+            background: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: grid;
+            place-items: center;
+            padding: 4px;
+        }
+    }
 </style>
 
 <script>
@@ -68,6 +89,20 @@ import Sprite from "./Sprite.astro"
             feedbackBody = document.querySelector<HTMLElement>(".feedback__body"),
             form = document.querySelector<HTMLFormElement>("#feedback-form"),
             phone = document.querySelector<HTMLInputElement>(".feedback input[type='tel']")
+
+        const modal = document.querySelector(".modal#main-modal")
+        if (!modal) return
+
+        document.addEventListener(ModalEvents.modalShow, () => {
+            modal.classList.add("show")
+            document.dispatchEvent(new CustomEvent(ModalEvents.modalShowed))
+            form && (form.elements[0] as HTMLInputElement).focus()
+        })
+
+        document.addEventListener(ModalEvents.modalClose, () => {
+            modal.classList.remove("show")
+            document.dispatchEvent(new CustomEvent(ModalEvents.modalClosed))
+        })
 
         close &&
             close.addEventListener("click", () => {

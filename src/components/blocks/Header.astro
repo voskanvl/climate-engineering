@@ -80,7 +80,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
         border: 1px solid var(--clr-blue);
         color: var(--clr-blue);
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: 500;
         height: 54px;
         display: grid;
         place-items: center;
@@ -116,7 +116,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
     .header__contacts > a {
         color: var(--clr-black);
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
     }
     .header__contacts > div {
         color: rgba(13, 33, 55, 0.7);
@@ -165,7 +165,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
 
     {
         const header = document.querySelector<HTMLElement>(".header"),
-            headerCall = document.querySelector<HTMLElement>(".header__call"),
+            headerCalls = document.querySelectorAll<HTMLElement>(".header__call"),
             searchTrigger = document.querySelector<HTMLElement>(".search-trigger"),
             searchPanel = document.querySelector<HTMLElement>(".search-panel"),
             burger = document.querySelector<HTMLElement>(".burger"),
@@ -178,7 +178,7 @@ const { links } = Links as { links: { name: string; href: string }[] }
                     : Actions.showSearchPanel()
             })
 
-        headerCall && headerCall.addEventListener("click", Actions.letModalShow)
+        headerCalls && headerCalls.forEach(e => e.addEventListener("click", Actions.letModalShow))
 
         burger &&
             burger.addEventListener("click", () => {
