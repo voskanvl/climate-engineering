@@ -62,9 +62,19 @@ import Sprite from "@ui/Sprite.astro"
 </style>
 
 <script>
+    import { SearchPanel } from "src/config/modalElents"
+
     {
-        const searchPanelCross = document.querySelector<HTMLElement>(".search-panel__cross"),
+        const searchPanel = document.querySelector<HTMLElement>(".search-panel"),
+            searchPanelCross = document.querySelector<HTMLElement>(".search-panel__cross"),
             input = document.querySelector<HTMLInputElement>("#finding")
+
+        document.addEventListener(SearchPanel.searchPanelShow, () => {
+            searchPanel.classList.add("show")
+        })
+        document.addEventListener(SearchPanel.searchPanelHide, () => {
+            searchPanel.classList.remove("show")
+        })
 
         searchPanelCross &&
             searchPanelCross.addEventListener("click", () => {

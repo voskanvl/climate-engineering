@@ -11,6 +11,11 @@ export const MobileMenuEvents = {
     mobileMenuClose: "mobilemenuclose",
 }
 
+export const SearchPanel = {
+    searchPanelShow: "searchpanelshow",
+    searchPanelHide: "searchpanelhide",
+}
+
 export const Actions = {
     letModalShow() {
         document.dispatchEvent(new CustomEvent(ModalEvents.modalShow))
@@ -20,5 +25,11 @@ export const Actions = {
     },
     sendModalMessage(message: string) {
         document.dispatchEvent(new CustomEvent(ModalEvents.modalMessage, { detail: { message } }))
+    },
+    showSearchPanel() {
+        document.dispatchEvent(new CustomEvent(SearchPanel.searchPanelShow))
+    },
+    hideSearchPanel() {
+        document.dispatchEvent(new CustomEvent(SearchPanel.searchPanelHide))
     },
 }

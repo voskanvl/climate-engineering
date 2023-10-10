@@ -174,8 +174,8 @@ const { links } = Links as { links: { name: string; href: string }[] }
         searchTrigger &&
             searchTrigger.addEventListener("click", () => {
                 searchPanel.classList.contains("show")
-                    ? searchPanel.classList.remove("show")
-                    : searchPanel.classList.add("show")
+                    ? Actions.hideSearchPanel()
+                    : Actions.showSearchPanel()
             })
 
         headerCall && headerCall.addEventListener("click", Actions.letModalShow)
