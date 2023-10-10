@@ -6,7 +6,7 @@ import Jobs from "@ui/Jobs.astro"
 ---
 
 <div class="about">
-    <h2 class="about__title ">О компании «КлиматТехника»</h2>
+    <h2 class="about__title title">О компании «КлиматТехника»</h2>
     <div class="about__body">
         <div class="about__left"><Image src={Hand} alt="jimmy nilsson masth" /></div>
         <div class="about__right">
@@ -26,23 +26,14 @@ import Jobs from "@ui/Jobs.astro"
 
 <style is:global>
     .about {
-        margin-bottom: 124px;
-    }
-    .about__title {
-        color: var(--clr-black);
-        font-size: clamp(20px,45 / 1920 * 100vw,45px);
-        font-weight: 600;
-        line-height: 105%; /* 47.25px */
-        text-align: center;
-        margin-bottom: calc(50 / 1920 * 100vw);
+        margin-bottom: calc(124 / 1920 * 100vw);
     }
     .about__caption {
         color: var(--clr-black);
-        font-size: clamp(14px,25 / 1920 * 100vw,25px);
+        font-size: clamp(14px, 25 / 1920 * 100vw, 25px);
         font-weight: 600;
         line-height: 105%; /* 26.25px */
         margin-block: 0 calc(50 / 1920 * 100vw);
-
     }
     .about__body {
         display: flex;
@@ -66,8 +57,7 @@ import Jobs from "@ui/Jobs.astro"
         padding-block: 70px;
         background: #fff;
     }
-    .about__right > div {
-    }
+
     .about__left > img {
         border-radius: var(--block-radius);
     }
@@ -82,20 +72,23 @@ import Jobs from "@ui/Jobs.astro"
         grid-template-rows: repeat(2, 1fr);
         gap: 20px;
     }
-    .about__grid .jobs__body{
+    .about__grid .jobs__body {
         translate: 0;
     }
     @media (max-width: 1024px) {
         .about__body {
             display: grid;
             grid-template-columns: 100%;
-            grid-template-rows: 50dvh auto;
+            grid-template-rows: 50vw auto;
             margin-top: -50px;
         }
         .about__left > img {
             width: 100%;
             min-width: unset;
             translate: 0 50px;
+        }
+        .about__right {
+            padding-left: calc(70 / 1920 * 100vw);
         }
     }
     @media (max-width: 768px) {

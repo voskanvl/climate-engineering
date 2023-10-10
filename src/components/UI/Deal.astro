@@ -21,7 +21,7 @@ const {
         <strike>{oldCost.toLocaleString()} ₽</strike>
         <strong>{newCost.toLocaleString()} ₽</strong>
     </div>
-    <Button type="transparent" text="Добавиь в корзину" href={href} />
+    <Button type="transparent" text="Добавить в корзину" href={href} />
 </a>
 
 <style is:global>
@@ -40,7 +40,7 @@ const {
     .deal__caption {
         color: var(--clr-black);
         text-align: center;
-        font-size: 18px;
+        font-size: clamp(12px, 18 / 1920 * 100vw, 18px);
         font-weight: 600;
     }
 
@@ -69,6 +69,7 @@ const {
         line-height: 105%; /* 26.25px */
     }
     .deal > img {
-        margin-bottom: 78px;
+        margin-bottom: calc(78 / 1920 * 100vw);
+        width: 100%;
     }
 </style>

@@ -70,14 +70,12 @@ const links = data.links
             display: grid
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
             grid-auto-rows: 1fr
-            row-gap: 1rem
+            row-gap: 2rem
             padding-bottom: 50px
             border-bottom: 1px solid #fff
 
-            @media (width <= 768px)
-                place-items: center
-            & > *
-                flex: 1
+            @media (width <= 1200px)
+                grid-template-columns: 100%
 
         &__left, &__right
             display: flex
@@ -85,6 +83,12 @@ const links = data.links
 
         &__left
             margin-right: calc(111 / 1920 * 100vw)
+            @media (width <= 1200px)
+                align-items: center
+
+            @media (width <= 450px)
+                flex-direction: column
+                row-gap: 1rem
 
         &__menu > ul
             list-style: none
@@ -94,26 +98,44 @@ const links = data.links
             flex-direction: column
             gap: 5px
 
+            @media (width <= 1200px)
+                flex-direction: row
+
+            @media  (width <= 680px)
+                flex-direction: column
+
         &__job, &__end
             place-self: stretch center
             display: flex
             flex-direction: column
             justify-content: space-between
 
-            @media (width <= 768px)
-                align-items: center
+            @media (width <= 1200px)
+                place-self: center
                 text-align: center
 
         &__end
-            align-items: flex-end
             place-self: stretch end
+            flex: 0 0 157px
+            gap: 5px
 
         &__left-left
             display: flex
             gap: 15px
+            flex: 0 0 370px
+            justify-content: flex-end
+            @media (width <= 1200px)
+                flex: 0
+            @media  (width <= 780px)
+                flex-direction: column
+                align-items: center
+                & > :is(.footer__phone, .footer__end)
+                    flex: 0
+                    place-self: center
 
         &__phone
             justify-self: flex-end
+            flex: 0 0 146px
 
         &__call
             padding: 1em 25px
@@ -131,5 +153,11 @@ const links = data.links
             text-align: center
             width: 90%
             margin-inline: auto
-            font-size: 13px
+            font-size: clamp(10px,13 / 1920 * 100vw,13px)
+
+        &__right
+            @media  (width <= 780px)
+                flex-direction: column
+                justify-content: flex-start
+                row-gap: 2rem
 </style>

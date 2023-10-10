@@ -7,7 +7,7 @@ import Button from "@ui/Button.astro"
 <div class="discount">
     <div class="discount__left">
         <div>
-            <h2 class="discount__title">
+            <h2 class="discount__title title">
                 Скидка 10% на установку сплит-<br />системы в квартиру или частный дом
             </h2>
             <p class="discount__text">
@@ -53,7 +53,6 @@ import Button from "@ui/Button.astro"
         display: flex;
         height: min(625px, 71dvh);
         position: relative;
-        margin-bottom: 120px;
     }
     .discount > * {
         flex: 1;
@@ -79,11 +78,8 @@ import Button from "@ui/Button.astro"
         position: absolute;
     }
     .discount__title {
-        font-size: clamp(25px, 45 / 1920 * 100vw, 45px);
-        font-weight: 600;
-        line-height: 105%; /* 47.25px */
-        margin: 0;
-        padding: 0;
+        color: #fff;
+        text-align: left;
     }
     .discount__text {
         font-family: Inter;

@@ -3,7 +3,7 @@ import partners from "@data/partners";
 import { Image } from "astro:assets"
 ---
 <div class="partners">
-    <div class="partners__title">Наши партнёры</div>
+    <div class="partners__title title">Наши партнёры</div>
     <ul class="partners__list">
         {
             partners && partners.map(e=><li ><Image src={e} alt="" draggable="false"/></Image></li>)
@@ -12,15 +12,7 @@ import { Image } from "astro:assets"
 </div>
 
 <style is:global>
-.partners__title{
-    color: var(--clr-black);
-    font-family: "Roboto Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 105%; /* 47.25px */
-    font-size: clamp(20px,45 / 1920 * 100vw,45px);
-    text-align: center;
-}
+
 .partners__list{
         list-style: none;
         padding-left: 0;

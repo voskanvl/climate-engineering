@@ -6,7 +6,7 @@ import Condey from "@images/condey.png"
 
 <div class="specter">
     <div class="specter__left">
-        <h2 class="specter__title">Широкий спектр<br /> применения кондиционеров</h2>
+        <h2 class="specter__title title">Широкий спектр<br /> применения кондиционеров</h2>
         <div class="specter__matrix">
             {
                 specter &&
@@ -28,20 +28,14 @@ import Condey from "@images/condey.png"
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        margin-bottom: 120px;
+        margin-bottom: calc(120 / 1920 * 100vw);
     }
     .specter__left {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    .specter__title {
-        color: var(--clr-black);
-        font-size: 45px;
-        font-weight: 600;
-        line-height: 105%; /* 47.25px */
-        margin-top: 0;
-    }
+
     .specter__matrix {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -81,6 +75,15 @@ import Condey from "@images/condey.png"
     @media (max-width: 1250px) {
         .specter {
             grid-template-columns: 100%;
+        }
+    }
+    @media (max-width: 1024px) {
+        .specter__matrix {
+            grid-template-columns: 100%;
+            row-gap: 10px;
+        }
+        .specter__matrix > .specter__matrix-item {
+            grid-column: 1 / -1;
         }
     }
 </style>

@@ -41,15 +41,12 @@ import Sprite from "@ui/Sprite.astro"
         display: flex;
         align-items: center;
         border-bottom: 1px solid #0d213780;
-        width: 50%;
+        width: max(235px, 50%);
     }
     .search-panel__search > input {
         padding-block: 6px;
         outline: none;
-    }
-    .search-panel svg {
-        width: 25px;
-        height: 25px;
+        width: 100%;
     }
     .search-panel > .search-panel__cross {
         width: 13px;
@@ -58,6 +55,9 @@ import Sprite from "@ui/Sprite.astro"
     }
     .search-panel__find {
         cursor: pointer;
+        width: 25px;
+        height: 25px;
+        flex: 0 0 25px;
     }
 </style>
 

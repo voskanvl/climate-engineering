@@ -10,8 +10,8 @@ const { links } = Links as { links: { name: string; href: string }[] }
 ---
 
 <div class="header">
-    <a href="/">
-        <Image src={Logo} alt="logo" class="header__logo" />
+    <a href="/" class="header__logo">
+        <Image src={Logo} alt="logo" />
     </a>
     <Sprite name="Burger" class="burger" />
     <div class="header__center">
@@ -49,7 +49,11 @@ const { links } = Links as { links: { name: string; href: string }[] }
         gap: 10px;
     }
     .header__logo {
-        flex: 0 0 244px;
+        flex: 0 0 min(50%, 244px);
+    }
+    .header__logo > img {
+        width: 100%;
+        object-fit: contain;
     }
 
     .header__center {
