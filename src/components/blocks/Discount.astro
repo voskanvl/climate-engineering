@@ -133,7 +133,9 @@ import { Picture } from "astro-imagetools/components"
     import { ModalEvents } from "src/config/modalElents"
 
     {
-        const discountForm = document.querySelector<HTMLFormElement>("#form-discount")
+        const discountForm = document.querySelector<HTMLFormElement>("#form-discount"),
+            phone = discountForm.querySelector<HTMLFormElement>("#phone-input")
+
         discountForm &&
             discountForm.addEventListener("submit", async (event: Event) => {
                 event.preventDefault()
@@ -165,6 +167,26 @@ import { Picture } from "astro-imagetools/components"
                         }),
                     )
                 }
+            })
+        const phoneMask = phone => {
+            return phone
+                .replace(/\D/g, "")
+                .replace(/^(\d)/, "($1")
+                .replace(/^(\(\d{3})(\d)/, "$1) $2")
+                .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+                .replace(/(-\d{2})(\d{1,2})$/, "$1-$2")
+                .replace(/(-\d{2})(\d{2})(\d+)$/, "$1-$2")
+        }
+
+        phone &&
+            phone.addEventListener("input", event => {
+                const { value } = event.target as HTMLInputElement
+                const str =
+                    value.replace(/\D/g, "").length >= 10
+                        ? ""
+                        : "Номер телефона должен состоять из 10 цифр"
+                phone.setCustomValidity(str)
+                ;(event.target as HTMLInputElement).value = phoneMask(value)
             })
     }
 </script>
