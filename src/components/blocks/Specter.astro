@@ -1,7 +1,8 @@
 ---
 import specter from "@data/specter"
-import { Image } from "astro:assets"
-import Condey from "@images/condey.png"
+// import { Image } from "astro:assets"
+// import Condey from "@images/condey.png"
+import { Picture } from "astro-imagetools/components"
 ---
 
 <div class="specter">
@@ -19,7 +20,11 @@ import Condey from "@images/condey.png"
         </div>
     </div>
     <div class="specter__right">
-        <Image src={Condey} alt="condey" />
+        <Picture
+            src="assets/images/condey.png"
+            alt="condey"
+            breakpoints={[320, 480, 768, 1024, 1440]}
+        />
     </div>
 </div>
 
@@ -29,6 +34,9 @@ import Condey from "@images/condey.png"
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-bottom: calc(120 / 1920 * 100vw);
+    }
+    .specter__title.title {
+        text-align: left;
     }
     .specter__left {
         display: flex;

@@ -69,7 +69,7 @@ const links = data.links
         &__up
             display: grid
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-            grid-auto-rows: 1fr
+            grid-auto-rows: auto
             row-gap: 2rem
             padding-bottom: 50px
             border-bottom: 1px solid #fff
@@ -85,6 +85,7 @@ const links = data.links
             margin-right: calc(111 / 1920 * 100vw)
             @media (width <= 1200px)
                 align-items: center
+                margin-right: 0
 
             @media (width <= 450px)
                 flex-direction: column
@@ -113,6 +114,7 @@ const links = data.links
             @media (width <= 1200px)
                 place-self: center
                 text-align: center
+                gap: 1em
 
         &__end
             place-self: stretch end
@@ -136,7 +138,8 @@ const links = data.links
         &__phone
             justify-self: flex-end
             flex: 0 0 146px
-
+            padding: calc(1em - 2px) 0
+            line-height: 1
         &__call
             padding: 1em 25px
             border-radius: 100px
@@ -161,3 +164,12 @@ const links = data.links
                 justify-content: flex-start
                 row-gap: 2rem
 </style>
+
+<script>
+    import { Actions } from "src/config/modalElents"
+
+    {
+        const call = document.querySelector<HTMLElement>(".footer__call")
+        call && call.addEventListener("click", Actions.letModalShow)
+    }
+</script>

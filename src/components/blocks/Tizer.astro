@@ -1,10 +1,11 @@
 ---
 import Header from "./Header.astro"
-import { Image } from "astro:assets"
-import TizerImage from "@images/tizer.png"
+// import { Image } from "astro:assets"
+// import TizerImage from "@images/tizer.png"
 import Sprite from "@ui/Sprite.astro"
 import Button from "@ui/Button.astro"
 import SearchPanel from "@ui/SearchPanel.astro"
+import { Picture } from "astro-imagetools/components"
 ---
 
 <div class="tizer">
@@ -23,7 +24,12 @@ import SearchPanel from "@ui/SearchPanel.astro"
             <Button type="blue" text="Перейти в каталог" href="" />
         </div>
         <div class="tizer__right">
-            <Image src={TizerImage} alt="tizer image" />
+            <!-- <Image src={TizerImage} alt="tizer image" /> -->
+            <Picture
+                src="assets/images/tizer.png"
+                alt="tizer"
+                breakpoints={[320, 480, 768, 1024, 1440]}
+            />
         </div>
     </div>
 </div>

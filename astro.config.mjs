@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config"
 import yaml from "@rollup/plugin-yaml"
 import ViteSvgSpriteWrapper from "vite-svg-sprite-wrapper"
+import { astroImageTools } from "astro-imagetools"
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,4 +22,5 @@ export default defineConfig({
             },
         },
     },
+    integrations: [astroImageTools],
 })

@@ -83,7 +83,7 @@ import Sprite from "./Sprite.astro"
 </style>
 
 <script>
-    import { ModalEvents } from "src/config/modalElents"
+    import { Actions, ModalEvents } from "src/config/modalElents"
     ;(function () {
         const close = document.querySelector<HTMLElement>(".feedback__close"),
             feedbackBody = document.querySelector<HTMLElement>(".feedback__body"),
@@ -102,6 +102,10 @@ import Sprite from "./Sprite.astro"
         document.addEventListener(ModalEvents.modalClose, () => {
             modal.classList.remove("show")
             document.dispatchEvent(new CustomEvent(ModalEvents.modalClosed))
+        })
+
+        document.addEventListener("keyup", (event: KeyboardEvent) => {
+            if (event.key === "Escape") Actions.letModalClose()
         })
 
         close &&

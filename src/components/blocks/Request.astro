@@ -2,6 +2,7 @@
 import Hand from "@images/young-woman-using-home-technology.jpg"
 import Button from "@ui/Button.astro"
 import { Image } from "astro:assets"
+import { Picture } from "astro-imagetools/components"
 ---
 
 <div class="request">
@@ -45,21 +46,28 @@ import { Image } from "astro:assets"
         </div>
     </div>
     <div class="request__footer">
-        <Image src={Hand} alt="hand" />
+        <!-- <Image src={Hand} alt="hand" /> -->
+        <Picture
+            src="assets/images/young-woman-using-home-technology.jpg"
+            alt="hand"
+            width="437"
+            breakpoints={{ count: 2, minWidth: 100, maxWidth: 437 }}
+        />
     </div>
 </div>
 
 <style is:global>
     .request {
-        background: url("assets/images/fills/form.png") no-repeat;
+        background: url("/assets/images/fills/form.webp") no-repeat;
         background-size: cover;
         background-position: center;
         color: #fff;
         border-radius: var(--block-radius);
         display: grid;
         place-items: center;
-        grid-template-columns: repeat(3, 1fr);
-        padding-inline: calc(100 / 1920 * 100vw);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        /* padding-inline: calc(100 / 1920 * 100vw); */
         margin-bottom: 20px;
         height: 572px;
         position: relative;
@@ -69,16 +77,30 @@ import { Image } from "astro:assets"
     .request__body {
         place-self: stretch center;
         margin-top: calc(120 / 1920 * 100vw);
+        padding-inline: 1rem;
     }
     .request__header {
-        place-self: start;
+        place-self: start center;
+    }
+    .request__body textarea {
+        resize: none;
     }
     .request__footer {
-        place-self: center end;
+        place-self: stretch end;
         border-radius: var(--block-radius);
         overflow: hidden;
-        position: absolute;
+        /* position: absolute; */
         right: 0;
+    }
+    .request__footer > picture {
+        width: 100%;
+        height: 100% !important;
+        /* position: absolute; */
+        /* right: 0; */
+    }
+    .request__footer img {
+        width: 100%;
+        height: 100% !important;
     }
     .request__body {
         width: min(509px, 100%);
@@ -113,10 +135,15 @@ import { Image } from "astro:assets"
         align-items: center;
         gap: 10px;
         width: 100%;
+        flex-wrap: wrap;
+    }
+    .request__submit > button {
+        flex: 9999 1 200px;
     }
     .request__submit > span {
         display: block;
-        width: 100%;
+        /* width: 100%; */
+        flex: 1 1 250px;
         font-size: 13px;
         font-style: normal;
         font-weight: 500;
@@ -125,12 +152,16 @@ import { Image } from "astro:assets"
     .request__submit > span > a {
         text-decoration: underline;
     }
-    @media (max-width: 1500px) {
+    @media (max-width: 1024px) {
         .request {
+            height: 100dvh;
             grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
         }
         .request__footer {
-            display: none;
+            /* display: none; */
+            place-self: stretch;
+            grid-column: 1 / -1;
         }
         .request__submit {
             flex-wrap: wrap;
@@ -142,7 +173,7 @@ import { Image } from "astro:assets"
         }
         .request__header {
             place-self: center;
-            margin-top: 0;
+            margin-top: 2dvh;
         }
     }
 </style>

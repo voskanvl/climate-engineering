@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets"
-import Picture from "@images/pexels-max-rahubovskiy-6588599.jpg"
+// import Picture from "@images/pexels-max-rahubovskiy-6588599.jpg"
 import Button from "@ui/Button.astro"
+import { Picture } from "astro-imagetools/components"
 ---
 
 <div class="discount">
@@ -44,7 +45,11 @@ import Button from "@ui/Button.astro"
         </div>
     </div>
     <div class="discount__right">
-        <Image src={Picture} alt="pexels max rahubovskiy" />
+        <Picture
+            src="assets/images/pexels-max-rahubovskiy-6588599.jpg"
+            alt="pexels max rahubovskiy"
+            breakpoints={{ count: 10, minWidth: 320, maxWidth: 1920 }}
+        />
     </div>
 </div>
 
@@ -53,6 +58,8 @@ import Button from "@ui/Button.astro"
         display: flex;
         height: min(625px, 71dvh);
         position: relative;
+        border-radius: var(--block-radius);
+        background: var(--clr-lightblue);
     }
     .discount > * {
         flex: 1;
@@ -65,17 +72,17 @@ import Button from "@ui/Button.astro"
         place-items: center;
         padding: 1rem;
     }
+
     .discount__right {
-        z-index: -1;
+        border-radius: var(--block-radius);
+        overflow: hidden;
     }
     .discount__right > img {
         border-radius: 0 30px 30px 0;
-        translate: -50px 0;
-        width: calc(50% + 50px);
+        width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center;
-        position: absolute;
     }
     .discount__title {
         color: #fff;
@@ -118,16 +125,6 @@ import Button from "@ui/Button.astro"
             display: grid;
             grid-template-rows: 530px;
             height: unset;
-        }
-        .discount__right {
-            z-index: 0;
-        }
-        .discount__right > img {
-            position: static;
-            translate: 0 -50px;
-            width: 100%;
-            height: 100%;
-            border-radius: var(--block-radius);
         }
     }
 </style>
