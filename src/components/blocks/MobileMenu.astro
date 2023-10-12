@@ -85,7 +85,7 @@ import common from "@data/common"
 </style>
 
 <script>
-    import { MobileMenuEvents } from "src/config/modalElents"
+    import { MobileMenuEvents, Actions } from "src/config/modalElents"
     {
         const mobileMenu = document.querySelector<HTMLElement>(".mobile-menu")
 
@@ -94,6 +94,12 @@ import common from "@data/common"
         })
         document.addEventListener(MobileMenuEvents.mobileMenuClose, () => {
             mobileMenu.classList.remove("show")
+        })
+        document.addEventListener("click", (event: Event) => {
+            const target = event.target as HTMLElement
+            const isMobileMenu = !!target.closest(".mobile-menu")
+            const isBurger = !!target.closest(".burger")
+            !isMobileMenu && !isBurger && Actions.mobileMenuHide()
         })
     }
 </script>

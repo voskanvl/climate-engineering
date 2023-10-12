@@ -71,7 +71,7 @@ import Sprite from "@ui/Sprite.astro"
 </style>
 
 <script>
-    import { SearchPanel } from "src/config/modalElents"
+    import { Actions, SearchPanel } from "src/config/modalElents"
 
     {
         const searchPanel = document.querySelector<HTMLElement>(".search-panel"),
@@ -88,7 +88,14 @@ import Sprite from "@ui/Sprite.astro"
 
         searchPanelCross &&
             searchPanelCross.addEventListener("click", () => {
-                input && (input.value = "")
+                Actions.hideSearchPanel()
             })
+
+        document.addEventListener("click", (event: Event) => {
+            const target = event.target as HTMLElement
+            const isSearchPanel =
+                !!target.closest(".search-panel") || !!target.closest(".search-trigger")
+            !isSearchPanel && Actions.hideSearchPanel()
+        })
     }
 </script>

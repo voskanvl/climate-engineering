@@ -32,4 +32,10 @@ export const Actions = {
     hideSearchPanel() {
         document.dispatchEvent(new CustomEvent(SearchPanel.searchPanelHide))
     },
+    mobileMenuShow() {
+        document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuOpen))
+    },
+    mobileMenuHide() {
+        document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuClose))
+    },
 }
