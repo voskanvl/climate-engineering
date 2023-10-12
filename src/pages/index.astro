@@ -20,15 +20,17 @@ import About from "@blocks/About.astro"
 import Block from "@ui/Block.astro"
 
 import Tizer from "@blocks/Tizer.astro"
-import Modal from "@ui/Modal.astro"
 import Feedback from "@ui/Feedback.astro"
 import FormMessage from "@ui/FormMessage.astro"
 import Partners from "@blocks/Partners.astro"
+import Header from "@blocks/Header.astro"
 ---
 
 <Layout title="КлиматТехника">
     <Feedback />
     <FormMessage />
+    <Header />
+
     <Block background="url('assets/images/fills/tizer.webp') no-repeat">
         <Tizer />
     </Block>

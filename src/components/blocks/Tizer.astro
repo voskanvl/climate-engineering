@@ -9,8 +9,6 @@ import { Picture } from "astro-imagetools/components"
 ---
 
 <div class="tizer">
-    <Header />
-    <SearchPanel />
     <div class="tizer__body">
         <div class="tizer__left">
             <div class="tizer__garant">
@@ -41,7 +39,7 @@ import { Picture } from "astro-imagetools/components"
     .tizer__body {
         display: flex;
         justify-content: space-between;
-        margin-top: calc(136 / 1920 * 100vw);
+        margin-top: max(70px, 136 / 1920 * 100vw);
     }
     .tizer__left {
         max-width: 552px;
@@ -95,11 +93,14 @@ import { Picture } from "astro-imagetools/components"
         max-width: unset;
     }
     @media (max-width: 1024px) {
+        .tizer {
+            height: max-content;
+        }
         .tizer__body {
             display: grid;
             grid-template-columns: 100%;
             row-gap: 2rem;
-            margin-top: 5px;
+            /* margin-top: 5px; */
         }
         .tizer__left {
             width: 100%;

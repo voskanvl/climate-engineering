@@ -5,6 +5,7 @@ import Links from "@data/links.yml"
 import Sprite from "@ui/Sprite.astro"
 import common from "@data/common"
 import MobileMenu from "./MobileMenu.astro"
+import SearchPanel from "@ui/SearchPanel.astro"
 
 const { links } = Links as { links: { name: string; href: string }[] }
 ---
@@ -20,7 +21,9 @@ const { links } = Links as { links: { name: string; href: string }[] }
         </ul>
         <div class="header__controls" style="color:#fff;">
             <Sprite name="search" class="search-trigger" />
-            <Sprite name="white-cart" />
+            <a href="">
+                <Sprite name="white-cart" />
+            </a>
         </div>
     </div>
 
@@ -32,11 +35,12 @@ const { links } = Links as { links: { name: string; href: string }[] }
         <button class="header__call">Заказать звонок</button>
     </div>
     <MobileMenu />
+    <SearchPanel />
 </div>
 
 <style is:global>
     .header {
-        margin-top: calc(100 / -1920 * 100vw);
+        /* margin-top: calc(100 / -1920 * 100vw); */
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -44,9 +48,12 @@ const { links } = Links as { links: { name: string; href: string }[] }
         background: #fffa;
         backdrop-filter: blur(15px);
         padding: 7px;
-        width: 100%;
         margin-inline: auto;
         gap: 10px;
+        position: absolute;
+        z-index: 2;
+        margin: calc(40 / 1920 * 100vw) calc(100 / 1920 * 100vw) 0;
+        width: calc(100% - calc(260 / 1920 * 100vw));
     }
     .header__logo {
         flex: 0 0 min(50%, 244px);
@@ -94,11 +101,15 @@ const { links } = Links as { links: { name: string; href: string }[] }
         gap: 5px;
         align-self: center;
     }
-    .header__controls > svg {
+    .header__controls > * {
         display: block;
         width: 34px;
         height: 34px;
         cursor: pointer;
+    }
+    .header__controls > * > svg {
+        width: 100%;
+        height: 100%;
     }
     .header__contacts-call {
         flex: 0 0 360px;

@@ -163,6 +163,9 @@ import { Picture } from "astro-imagetools/components"
             place-self: stretch;
             grid-column: 1 / -1;
         }
+        .request__footer img {
+            animation: fly-footer 10s infinite ease-in-out both;
+        }
         .request__submit {
             flex-wrap: wrap;
         }
@@ -174,6 +177,17 @@ import { Picture } from "astro-imagetools/components"
         .request__header {
             place-self: center;
             margin-top: 2dvh;
+        }
+    }
+    @keyframes fly-footer {
+        0% {
+            object-position: 50% 0%;
+        }
+        50% {
+            object-position: 50% 100%;
+        }
+        100% {
+            object-position: 50% 0%;
         }
     }
 </style>

@@ -20,6 +20,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-.tar
-.gz
-.tar.gz
+*.tar
+*.gz 
+*.tar.gz
