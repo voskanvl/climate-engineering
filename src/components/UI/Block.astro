@@ -2,12 +2,13 @@
 interface Props {
     background: string
     id?: string
+    isFirst?: boolean
 }
-const { background, id } = Astro.props
+const { background, id, isFirst = false } = Astro.props
 ---
 
 <div
-    class="block"
+    class:list={["block", { "first-block": isFirst }]}
     style={{ background, backgroundSize: "cover", backgroundPosition: "center" }}
     id={id || ""}
 >
@@ -16,7 +17,7 @@ const { background, id } = Astro.props
     </div>
 </div>
 
-<style is:global>
+<style is:global define:vars={{ isFirst }}>
     .block {
         border-radius: var(--block-radius);
         display: grid;
@@ -27,6 +28,8 @@ const { background, id } = Astro.props
     }
     .block > div {
         width: 100%;
+    }
+    .block.first-block > div {
         margin-top: max(125px, 212 / 1920 * 100vw);
     }
 </style>

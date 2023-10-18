@@ -1,0 +1,49 @@
+catalog:
+  - name: Настенные сплит-системы
+    href: ""
+  - name: Колонные сплит-системы
+    href: ""
+  - name: Мультисплит-системы
+    href: ""
+  - name: Напольно-потолочные сплит-системы
+    href: ""
+  - name: Промышленные сплит-системы
+    href: ""
+
+vendor:
+  - name: Ballu
+    id: vendor1
+  - name: Kentatsu
+    id: vendor2
+
+square:
+  - name: до 21 м²
+    id: square1
+  - name: до 27 м²
+    id: square2
+  - name: до 36 м²
+    id: square3
+  - name: до 42 м²
+    id: square4
+  - name: до 54 м²
+    id: square5
+  - name: до 72 м²
+    id: square6
+  - name: до 85 м²
+    id: square7
+
+test:
+  - name: до 21 м²
+    id: square1
+  - name: до 27 м²
+    id: square2
+  - name: до 36 м²
+    id: square3
+  - name: до 42 м²
+    id: square4
+  - name: до 54 м²
+    id: square5
+  - name: до 72 м²
+    id: square6
+  - name: до 85 м²
+    id: square7

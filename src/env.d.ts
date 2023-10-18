@@ -32,3 +32,9 @@ declare interface JobsType {
     icon: ImageMetadata
     href: string
 }
+declare interface CatalogFilter {
+    catalog: { name: string; href: string }[]
+    vendor: { name: string; id: string }[]
+    square: { name: string; id: string }[]
+    test: { name: string; id: string }[]
+}

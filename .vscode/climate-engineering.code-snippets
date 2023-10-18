@@ -9,7 +9,12 @@
     "Insert style tag": {
         "scope": "astro,sass,css",
         "prefix": "ssc",
-        "body": ["<style lang=\"sass\" is:global>", "$1", "</style>"],
+        "body": [
+            "<style lang=\"sass\" is:global>",
+            "@import \"@sass/_functions\"",
+            "$1",
+            "</style>"
+        ],
         "description": "make style sass block"
     }
 }

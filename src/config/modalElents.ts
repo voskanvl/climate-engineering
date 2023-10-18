@@ -16,11 +16,6 @@ export const SearchPanel = {
     searchPanelHide: "searchpanelhide",
 }
 
-export const FilterCatalog = {
-    filterOpen: "filteropen",
-    filterClose: "filterclose",
-}
-
 const dispatch = (event: string, options?: { detail: unknown }) =>
     document.dispatchEvent(new CustomEvent(event, options))
 
@@ -45,11 +40,5 @@ export const Actions = {
     },
     mobileMenuHide() {
         dispatch(MobileMenuEvents.mobileMenuClose)
-    },
-    filterOpen() {
-        dispatch(FilterCatalog.filterOpen)
-    },
-    filterClose() {
-        dispatch(FilterCatalog.filterClose)
     },
 }

@@ -1,0 +1,66 @@
+---
+interface Props {
+    name: string
+    id: string
+}
+const { name, id } = Astro.props
+---
+
+<div class="accordion">
+    <input type="checkbox" name="" id={`check${id}`} hidden />
+    <label class="accordion__title" for={`check${id}`}>
+        <span>{name}</span>
+        <span class="accordion__filter-chevron">
+            <svg
+                width="11"
+                height="6"
+                viewBox="0 0 11 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M1.08365 5.33368L5.24264 1.00736" stroke="#0D2137" stroke-linecap="round"
+                ></path>
+                <path d="M9.63412 5.32169L5.53666 0.933873" stroke="#0D2137" stroke-linecap="round"
+                ></path>
+            </svg>
+        </span>
+    </label>
+    <div class="accordion__body">
+        <div>
+            <slot />
+        </div>
+    </div>
+</div>
+
+<style lang="sass" is:global>
+    .accordion
+
+        &__title
+            display: flex
+            align-items: center
+            gap: 1rem
+            & > span
+                cursor: pointer
+                color: #0D2137
+                font-size: 18px
+                font-weight: 500
+
+        &__filter-chevron
+            display: grid
+            place-items: center
+            rotate: 0
+            transition: rotate var(--transtion-time)
+
+        &__body
+            display: grid
+            grid-template-rows: 0fr
+            transition: grid-template-rows var(--transtion-time)
+            & > div
+                overflow: hidden
+
+        & > input[type='checkbox']:checked ~ .accordion__body
+            grid-template-rows: 1fr
+
+        & > input[type='checkbox']:checked + &__title > .accordion__filter-chevron
+            rotate: 180deg
+</style>

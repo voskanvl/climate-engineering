@@ -1,2 +1,11 @@
 @function fzp($end,$start)
     @return clamp(#{$end}px,$start / 1920 * 100vw,#{$start}px)
+
+=columns($x)
+    display: flex
+    flex-direction: column
+    row-gap: $x
+
+=gcenter()
+    display: grid
+    place-items: center

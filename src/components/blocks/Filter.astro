@@ -1,42 +1,154 @@
+---
+import Accordion from "@ui/Accordion.astro"
+import filterdata from "@data/catalog-filter.yml"
+import ResetButton from "@ui/ResetButton.astro"
+const filterData = filterdata as CatalogFilter
+---
+
 <div class="filter-catalog">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores nam consequuntur qui rem
-    fugiat doloribus quis iure debitis quasi dolor aliquam fugit numquam et tenetur quas ad mollitia
-    labore a illo, esse sit. Soluta nulla explicabo corporis voluptas tenetur? Amet, dolorum. Beatae
-    accusantium excepturi, ducimus cupiditate porro ab illum explicabo doloribus provident sint
-    officiis fuga enim ratione commodi totam quod exercitationem neque ullam eveniet iste suscipit
-    adipisci maiores. Odio, soluta impedit! Dignissimos officia aut ipsum reprehenderit accusantium!
-    Iure molestiae rem distinctio suscipit qui quibusdam numquam illum minus fuga sapiente id sed,
-    laudantium ipsa harum quis possimus deserunt explicabo est officiis aliquam? Ab voluptate est
-    perspiciatis ea quidem officiis beatae minima cupiditate vel rem tempora praesentium aliquam
-    dolorum, quibusdam doloribus consequuntur temporibus quasi fuga deserunt a alias unde officia
-    commodi. Accusantium quam obcaecati unde, aut quos, asperiores rem totam aliquam, optio mollitia
-    excepturi. Praesentium dignissimos iusto corrupti ratione obcaecati ad quidem, quos, id eius
-    numquam architecto maxime asperiores voluptas reprehenderit nemo! Voluptatem ex aut
-    necessitatibus possimus a omnis facere porro praesentium ullam animi quisquam neque deserunt
-    quae consequuntur quos unde temporibus dolorem esse repellendus est, molestias vel? Amet dolores
-    dolorem repellendus maxime ex a molestias exercitationem? Laboriosam, officia maiores quas iste
-    velit, quam repudiandae perferendis repellendus vero exercitationem atque quidem dolorum
-    veritatis! Sit, vero quisquam modi, animi maxime error laboriosam, autem quo velit et ab beatae.
-    Repellat laborum magnam accusamus perspiciatis et? In officia quibusdam debitis pariatur, ipsa
-    ea nam sit voluptatum possimus. Quo iure, a consequatur rem molestiae facere recusandae, quasi
-    rerum nisi accusantium odit eius! Maxime magnam voluptatum laboriosam ab accusamus, perferendis
-    atque ex vitae veniam animi, quidem delectus vel id! Libero recusandae inventore sequi
-    provident, tempore unde ratione voluptates? Ipsum deleniti id quasi alias officiis, suscipit,
-    ducimus quidem eveniet quia ullam distinctio voluptatum facilis! Soluta ullam quisquam
-    doloremque minima sint placeat ratione sit dolor voluptatum et modi dolorem quidem, sunt
-    architecto maxime. Id, veniam voluptatem est ipsa quaerat, eveniet vitae ea eum cumque libero
-    perferendis voluptates doloremque tempore ipsam. Nesciunt esse, cum aut rem maiores delectus
-    aliquid eaque voluptate aperiam laboriosam, repellat culpa ullam sint neque dicta, quis magnam
-    quasi. Animi asperiores dolore qui dignissimos optio, velit voluptatum. Corporis cum molestias,
-    consequuntur dolorum et, minus provident sed reprehenderit, eum aspernatur id voluptates. Magnam
-    modi inventore illum numquam at explicabo dolorem necessitatibus iure, totam qui aut? Quibusdam
-    tenetur officia numquam expedita, aut, aliquid odio, enim ut minima odit nostrum.
+    <h3 class="filter-catalog__title">Фильтр</h3>
+    <Accordion name="Каталог" id="p1">
+        <ul class="filter-catalog__list">
+            {
+                filterData &&
+                    filterData.catalog &&
+                    filterData.catalog.map(e => (
+                        <li>
+                            <a href={e.href}>{e.name}</a>
+                        </li>
+                    ))
+            }
+        </ul>
+    </Accordion>
+    <Accordion name="Производитель" id="p2">
+        <ul class="filter-catalog__radio-list">
+            {
+                filterData &&
+                    filterData.vendor &&
+                    filterData.vendor.map(e => (
+                        <li>
+                            <label for={e.id}>
+                                <input type="radio" name="vendor" id={e.id} />
+                                <span>{e.name}</span>
+                            </label>
+                        </li>
+                    ))
+            }
+        </ul>
+    </Accordion>
+    <Accordion name="Площадь помещения" id="p3">
+        <ul class="filter-catalog__radio-list">
+            {
+                filterData &&
+                    filterData.square &&
+                    filterData.square.map(e => (
+                        <li>
+                            <label for={e.id}>
+                                <input type="radio" name="square" id={e.id} />
+                                <span>{e.name}</span>
+                            </label>
+                        </li>
+                    ))
+            }
+        </ul>
+    </Accordion>
+    <Accordion name="Тест" id="p4">
+        <ul class="filter-catalog__radio-list">
+            {
+                filterData &&
+                    filterData.test &&
+                    filterData.test.map(e => (
+                        <li>
+                            <label for={e.id}>
+                                <input type="radio" name="test" id={e.id} />
+                                <span>{e.name}</span>
+                            </label>
+                        </li>
+                    ))
+            }
+        </ul>
+    </Accordion>
+    <div class="filter-catalog__footer">
+        <button class="filter-catalog__show-more">Показать еще</button>
+        <ResetButton />
+    </div>
 </div>
 
 <style lang="sass" is:global>
+    @import "@sass/_functions"
     .filter-catalog
+        --filter-height: 795px
+        position: relative
         background: #fff
-        padding: 1rem
+        padding: 25px 30px
         width: 100%
         border-radius: 20px
+        display: flex
+        +columns(10px)
+        min-height: 360px
+        max-height: var(--filter-height)
+        overflow-y: hidden
+        transition: max-height var(--transtion-time)
+
+        &__title
+            text-align: center
+
+        &__list
+            list-style: none
+            padding-left: 0
+            +columns(10px)
+
+        &__radio-list
+            list-style: none
+            padding-left: 0
+            +columns(10px)
+            & > li
+                & > label
+                    display: flex
+                    gap: 0.5rem
+
+        &__footer
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            padding: 25px
+            width: 100%
+            height: max-content
+            background: #fff
+            +columns(30px)
+
+            & > *
+                width: 100%
+
+        &__show-more
+            background: none
+            border: none
+            cursor: pointer
+            color: #BEBEBE
+            font-size: 13px
+            text-decoration-line: underline
+            text-align-last: left
 </style>
+
+<script>
+    {
+        const showMore = document.querySelector<HTMLButtonElement>(".filter-catalog__show-more"),
+            filterCatalog = document.querySelector<HTMLElement>(".filter-catalog")
+
+        let heightFilter = "795px"
+
+        filterCatalog &&
+            showMore &&
+            showMore.addEventListener("click", () => {
+                if (parseInt(heightFilter) <= 795) {
+                    filterCatalog.style.setProperty("--filter-height", "2000px")
+                    showMore.textContent = "Скрыть"
+                } else {
+                    filterCatalog.style.setProperty("--filter-height", "795px")
+                    showMore.textContent = "Показать еще"
+                }
+                heightFilter = filterCatalog.style.getPropertyValue("--filter-height")
+            })
+    }
+</script>
