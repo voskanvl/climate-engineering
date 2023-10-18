@@ -1,0 +1,94 @@
+---
+import deals from "@data/deals"
+import Deal from "@ui/Deal.astro"
+import Filter from "./Filter.astro"
+---
+
+<div class="catalog">
+    <input type="checkbox" name="" id="filter-switcher" hidden />
+    <label class="catalog__filter-trigger" for="filter-switcher"
+        ><span>Фильтр</span>
+        <span class="catalog__filter-chevron">
+            <svg
+                width="11"
+                height="6"
+                viewBox="0 0 11 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M1.08365 5.33368L5.24264 1.00736" stroke="#0D2137" stroke-linecap="round"
+                ></path>
+                <path d="M9.63412 5.32169L5.53666 0.933873" stroke="#0D2137" stroke-linecap="round"
+                ></path>
+            </svg>
+        </span>
+    </label>
+
+    <div class="catalog__main">
+        <div class="catalog__filter">
+            <Filter />
+        </div>
+        <div class="catalog__body">
+            <div class="catalog__body-inner">
+                {deals && deals.map((e: Deal) => <Deal deal={e} />)}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style lang="sass" is:global>
+    .catalog
+        &__main
+            position: relative
+            display: grid
+            grid-template-columns: 300px 1fr
+            gap: 20px
+            transition: grid-template-columns var(--transtion-time)
+            @media (width <= 768px)
+                grid-template-columns: 100%
+        &__body
+            & > .catalog__body-inner
+                display: grid
+                grid-template-columns: repeat(auto-fit, minmax(230px, 1fr))
+                gap: 20px
+
+        &__filter
+            contain: paint
+            @media (width <= 768px)
+                position: absolute
+                top: 0
+                left: -500px
+                width: 316px
+                z-index: 2
+                transition: left var(--transtion-time)
+                box-shadow: 5px 5px 16px #7777
+
+        &__filter-trigger
+            margin-bottom: 2rem
+            display: block
+            padding-left: 1rem
+            display: flex
+            align-items: center
+            gap: 1rem
+
+        &__filter-chevron
+            rotate: 0
+            transition: rotate var(--transtion-time)
+            display: grid
+            place-items: center
+
+        #filter-switcher
+            &:checked
+                & + .catalog__filter-trigger > .catalog__filter-chevron
+                    rotate: 180deg
+
+                & ~ .catalog__main
+                    @media(width > 768px)
+                        grid-template-columns: 0px 1fr
+
+                    @media(width <= 768px)
+                        .catalog__filter
+                            left: 0
+</style>
+
+<script></script>

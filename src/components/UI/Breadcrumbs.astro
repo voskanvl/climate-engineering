@@ -1,0 +1,25 @@
+---
+interface Props {
+    path: { name: string; href: string }[]
+}
+const { path } = Astro.props
+---
+
+<div class="breadcrumbs">
+    {
+        path &&
+            path.map((e, i) => (
+                <a href={e.href}>{" " + e.name + (i === path.length - 1 ? "" : " /")}</a>
+            ))
+    }
+</div>
+
+<style lang="sass" is:global>
+    @import "@sass/_functions"
+    .breadcrumbs
+        font-size: fzp(12,16)
+        & > a
+            color: #0D213780
+            &:last-child
+                color: #0D2137
+</style>

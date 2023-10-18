@@ -16,26 +16,40 @@ export const SearchPanel = {
     searchPanelHide: "searchpanelhide",
 }
 
+export const FilterCatalog = {
+    filterOpen: "filteropen",
+    filterClose: "filterclose",
+}
+
+const dispatch = (event: string, options?: { detail: unknown }) =>
+    document.dispatchEvent(new CustomEvent(event, options))
+
 export const Actions = {
     letModalShow() {
-        document.dispatchEvent(new CustomEvent(ModalEvents.modalShow))
+        dispatch(ModalEvents.modalShow)
     },
     letModalClose() {
-        document.dispatchEvent(new CustomEvent(ModalEvents.modalClose))
+        dispatch(ModalEvents.modalClose)
     },
     sendModalMessage(message: string) {
-        document.dispatchEvent(new CustomEvent(ModalEvents.modalMessage, { detail: { message } }))
+        dispatch(ModalEvents.modalMessage, { detail: { message } })
     },
     showSearchPanel() {
-        document.dispatchEvent(new CustomEvent(SearchPanel.searchPanelShow))
+        dispatch(SearchPanel.searchPanelShow)
     },
     hideSearchPanel() {
-        document.dispatchEvent(new CustomEvent(SearchPanel.searchPanelHide))
+        dispatch(SearchPanel.searchPanelHide)
     },
     mobileMenuShow() {
-        document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuOpen))
+        dispatch(MobileMenuEvents.mobileMenuOpen)
     },
     mobileMenuHide() {
-        document.dispatchEvent(new CustomEvent(MobileMenuEvents.mobileMenuClose))
+        dispatch(MobileMenuEvents.mobileMenuClose)
+    },
+    filterOpen() {
+        dispatch(FilterCatalog.filterOpen)
+    },
+    filterClose() {
+        dispatch(FilterCatalog.filterClose)
     },
 }

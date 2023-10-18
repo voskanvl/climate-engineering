@@ -1,0 +1,28 @@
+---
+import Header from "@blocks/Header.astro"
+import Feedback from "@ui/Feedback.astro"
+import FormMessage from "@ui/FormMessage.astro"
+import Layout from "../layouts/main.astro"
+import Request from "@blocks/Request.astro"
+import Block from "@ui/Block.astro"
+import Breadcrumbs from "@ui/Breadcrumbs.astro"
+import CatalogList from "@blocks/Catalog.astro"
+---
+
+<Layout title="КлиматТехника | Каталог">
+    <Feedback />
+    <FormMessage />
+    <Header />
+    <Block background="#E8F0F8">
+        <Breadcrumbs
+            path={[
+                { href: "/", name: "Главная" },
+                { href: "/catalog.html", name: "Каталог" },
+                { href: "/hgkhjgkjkjhgjk.html", name: "Настенные сплит-системы" },
+            ]}
+        />
+        <h2 class="page-title">Настенные сплит-системы</h2>
+        <CatalogList />
+    </Block>
+    <Request />
+</Layout>

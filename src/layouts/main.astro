@@ -61,7 +61,7 @@ const { title } = Astro.props
     img {
         display: block;
     }
-    :is(input, textarea) {
+    :is(input, textarea):not([hidden]) {
         border-radius: 100px;
         background: #fff;
         padding: 16px 30px;
@@ -110,5 +110,18 @@ const { title } = Astro.props
         margin-top: 0;
         margin-bottom: calc(50 / 1920 * 100vw);
         text-align: center;
+    }
+    .page-title {
+        font-family: "Roboto Condensed", sans-serif;
+        color: var(--clr-black);
+        font-size: clamp(30px, 55 / 1920 * 100vw, 55px);
+        font-weight: 700;
+        line-height: 105%; /* 47.25px */
+        margin: 0;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: calc(50 / 1920 * 100vw);
+        text-align: left;
+        margin-block: 15px 50px;
     }
 </style>
