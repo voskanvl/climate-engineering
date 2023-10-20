@@ -8,7 +8,7 @@ const filterData = filterdata as CatalogFilter
 
 <div class="filter-catalog">
     <h3 class="filter-catalog__title">Фильтр</h3>
-    <Accordion name="Каталог" id="p1">
+    <Accordion name="Каталог" id="p1" open={true}>
         <ul class="filter-catalog__list">
             {
                 filterData &&
@@ -21,10 +21,10 @@ const filterData = filterdata as CatalogFilter
             }
         </ul>
     </Accordion>
-    <Accordion name="Цена" id="cost">
+    <Accordion name="Цена" id="cost" open={true}>
         <MultiRange min={20} max={100} />
     </Accordion>
-    <Accordion name="Производитель" id="p2">
+    <Accordion name="Производитель" id="p2" open={true}>
         <ul class="filter-catalog__radio-list">
             {
                 filterData &&
@@ -81,7 +81,6 @@ const filterData = filterdata as CatalogFilter
 <style lang="sass" is:global>
     @import "@sass/_functions"
     .filter-catalog
-        --filter-height: 795px
         position: relative
         background: #fff
         padding: 25px 20px
@@ -89,10 +88,15 @@ const filterData = filterdata as CatalogFilter
         border-radius: 20px
         display: flex
         +columns(10px)
-        min-height: 360px
-        max-height: var(--filter-height)
-        overflow-y: hidden
-        transition: max-height var(--transtion-time)
+        min-height: 620px
+        height: max-content
+        // overflow-y: hidden
+        // transition: max-height var(--transtion-time)
+
+        & > *:not(.filter-catalog__title, .filter-catalog__footer, :nth-child(1 of .accordion ),:nth-child(2 of .accordion ), :nth-child(3 of .accordion ))
+            display: none
+        &.showall > .accordion
+            display: block
 
         &__title
             text-align: center
@@ -112,15 +116,11 @@ const filterData = filterdata as CatalogFilter
                     gap: 0.5rem
 
         &__footer
-            position: absolute
-            bottom: 0
-            left: 0
-            right: 0
-            padding: 25px
             width: 100%
             height: max-content
             background: #fff
             +columns(30px)
+            border-radius: 20px
 
             & > *
                 width: 100%
@@ -140,19 +140,10 @@ const filterData = filterdata as CatalogFilter
         const showMore = document.querySelector<HTMLButtonElement>(".filter-catalog__show-more"),
             filterCatalog = document.querySelector<HTMLElement>(".filter-catalog")
 
-        let heightFilter = "795px"
-
         filterCatalog &&
             showMore &&
             showMore.addEventListener("click", () => {
-                if (parseInt(heightFilter) <= 795) {
-                    filterCatalog.style.setProperty("--filter-height", "2000px")
-                    showMore.textContent = "Скрыть"
-                } else {
-                    filterCatalog.style.setProperty("--filter-height", "795px")
-                    showMore.textContent = "Показать еще"
-                }
-                heightFilter = filterCatalog.style.getPropertyValue("--filter-height")
+                filterCatalog.classList.toggle("showall")
             })
     }
 </script>

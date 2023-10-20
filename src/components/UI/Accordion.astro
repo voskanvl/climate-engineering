@@ -2,12 +2,13 @@
 interface Props {
     name: string
     id: string
+    open?: boolean
 }
-const { name, id } = Astro.props
+const { name, id, open = false } = Astro.props
 ---
 
 <div class="accordion">
-    <input type="checkbox" name="" id={`check${id}`} hidden />
+    <input type="checkbox" name="" id={`check${id}`} hidden checked={open} />
     <label class="accordion__title" for={`check${id}`}>
         <span>{name}</span>
         <span class="accordion__filter-chevron">
