@@ -2,6 +2,7 @@
 import Accordion from "@ui/Accordion.astro"
 import filterdata from "@data/catalog-filter.yml"
 import ResetButton from "@ui/ResetButton.astro"
+import MultiRange from "@ui/MultiRange.astro"
 const filterData = filterdata as CatalogFilter
 ---
 
@@ -19,6 +20,9 @@ const filterData = filterdata as CatalogFilter
                     ))
             }
         </ul>
+    </Accordion>
+    <Accordion name="Цена" id="cost">
+        <MultiRange min={20} max={100} />
     </Accordion>
     <Accordion name="Производитель" id="p2">
         <ul class="filter-catalog__radio-list">
@@ -80,7 +84,7 @@ const filterData = filterdata as CatalogFilter
         --filter-height: 795px
         position: relative
         background: #fff
-        padding: 25px 30px
+        padding: 25px 20px
         width: 100%
         border-radius: 20px
         display: flex

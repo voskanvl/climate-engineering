@@ -1,0 +1,188 @@
+---
+interface Props {
+    min: number
+    max: number
+}
+const { min = 0, max = 100 } = Astro.props
+---
+
+<div class="multi-range" data-min={min} data-max={max}>
+    <div class="multi-range__container">
+        <div class="multi-range__rails"></div>
+        <div class="multi-range__track"></div>
+        <div class="multi-range__thumbs">
+            <div class="multi-range__thumb multi-range__thumb--min"></div>
+            <div class="multi-range__thumb multi-range__thumb--max"></div>
+        </div>
+    </div>
+    <div class="multi-range__outputs">
+        <input
+            type="number"
+            name="const-min"
+            class="multi-range__output multi-range__output--min"
+            draggable="false"
+        />
+        <input
+            type="number"
+            name="const-max"
+            class="multi-range__output multi-range__output--max"
+            draggable="false"
+        />
+    </div>
+</div>
+
+<style lang="sass" is:global>
+    @import "@sass/_functions.sass"
+    .multi-range
+        &__container
+            height: 13px
+            position: relative
+            margin: 1rem
+            user-select: none
+
+        &__rails
+            height: 1px
+            background: #BEBEBE
+            position: absolute
+            width: 100%
+            top: 50%
+            translate: 0 -50%
+
+        &__track
+            --left: 0px
+            --width: 100%
+            position: absolute
+            height: 3px
+            background: var(--clr-blue)
+            top: 50%
+            translate: 0 -50%
+            left: var(--left)
+            width: var(--width)
+
+        &__thumb
+            width: 13px
+            height: 13px
+            background: var(--clr-blue)
+            border-radius: 50%
+            position: absolute
+            translate: -50% 0
+
+            &--min
+                --left: 0px
+                left: var(--left)
+            &--max
+                --left: 100%
+                left: var(--left)
+
+        &__outputs
+            display: flex
+            width: 100%
+            gap: 10px
+
+            & > input
+                background: #E8F0F8
+                color: #BEBEBE
+                font-size: 18px
+                font-weight: 400
+                width: 123px
+                padding: 5px 5px 5px 20px
+</style>
+
+<script>
+    {
+        const multiRangeContainer =
+                document.querySelector<HTMLDivElement>(".multi-range__container"),
+            root = document.querySelector<HTMLDivElement>(".multi-range"),
+            track = document.querySelector<HTMLDivElement>(".multi-range__track"),
+            thumbMin = document.querySelector<HTMLDivElement>(".multi-range__thumb--min"),
+            thumbMax = document.querySelector<HTMLDivElement>(".multi-range__thumb--max"),
+            inputMin = document.querySelector<HTMLInputElement>(".multi-range__output--min"),
+            inputMax = document.querySelector<HTMLInputElement>(".multi-range__output--max")
+
+        multiRangeContainer &&
+            multiRangeContainer.addEventListener("pointermove", ({ x }: PointerEvent) => {
+                const { left, width } = multiRangeContainer.getBoundingClientRect()
+
+                x = x - left
+                multiRangeContainer.dispatchEvent(
+                    new CustomEvent("move", {
+                        detail: {
+                            x: x,
+                            percent: (x / width) * 100,
+                        },
+                    }),
+                )
+            })
+
+        function initThumbs() {
+            const { width } = multiRangeContainer.getBoundingClientRect()
+            thumbMax && thumbMax.style.setProperty("--left", width + "px")
+            thumbMin && thumbMin.style.setProperty("--left", 0 + "px")
+        }
+        initThumbs()
+
+        function calculateTrack() {
+            if (!track) return
+            const { left } = multiRangeContainer.getBoundingClientRect()
+            const { left: leftMin } = thumbMin.getBoundingClientRect()
+            const { left: leftMax } = thumbMax.getBoundingClientRect()
+            track.style.setProperty("--left", leftMin - left + 2 + "px")
+            track.style.setProperty("--width", leftMax - leftMin + 2 + "px")
+        }
+        calculateTrack()
+
+        function outData() {
+            if (!inputMin || !inputMax || !root || !multiRangeContainer) return
+            const { width: widthContainer } = multiRangeContainer.getBoundingClientRect()
+            const min = parseInt(root.dataset.min)
+            const max = parseInt(root.dataset.max)
+            const range = (max || 0) - (min || 0)
+            const k = range / widthContainer
+
+            const leftMin = thumbMin.style.getPropertyValue("--left")
+            const leftMax = thumbMax.style.getPropertyValue("--left")
+
+            inputMin.value = Math.ceil(parseInt(leftMin) * k) + min + ""
+            inputMax.value = Math.ceil(parseInt(leftMax) * k) + min + ""
+        }
+        outData()
+
+        function createHandler(thumb: HTMLElement | null) {
+            return function ({
+                detail: { x, percent },
+            }: CustomEvent<{ x: number; percent: number }>) {
+                if (percent > 100 || percent < 0) return
+                calculateTrack()
+                thumb && thumb.style.setProperty("--left", x + "px")
+                outData()
+            }
+        }
+        const thumbMinHandler = createHandler(thumbMin)
+        const thumbMaxHandler = createHandler(thumbMax)
+
+        thumbMin &&
+            thumbMin.addEventListener("pointerdown", () => {
+                multiRangeContainer.addEventListener("move", thumbMinHandler)
+            })
+        thumbMin &&
+            thumbMin.addEventListener("pointerup", () => {
+                multiRangeContainer.removeEventListener("move", thumbMinHandler)
+            })
+        thumbMin &&
+            thumbMin.addEventListener("pointerleave", () => {
+                multiRangeContainer.removeEventListener("move", thumbMinHandler)
+            })
+        thumbMax &&
+            thumbMax.addEventListener("pointerdown", () => {
+                multiRangeContainer.addEventListener("move", thumbMaxHandler)
+            })
+        thumbMax &&
+            thumbMax.addEventListener("pointerup", () => {
+                multiRangeContainer.removeEventListener("move", thumbMaxHandler)
+            })
+        thumbMax &&
+            thumbMax.addEventListener("pointerleave", () => {
+                multiRangeContainer.removeEventListener("move", thumbMaxHandler)
+            })
+    }
+</script>
